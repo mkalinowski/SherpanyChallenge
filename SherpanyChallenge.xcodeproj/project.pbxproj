@@ -22,6 +22,7 @@
 		D001E3B91FEC757500A7C06F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D001E3BC1FEC757500A7C06F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D001E3BE1FEC757500A7C06F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D001E3C51FEC767700A7C06F /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +61,7 @@
 				D001E3B91FEC757500A7C06F /* Assets.xcassets */,
 				D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */,
 				D001E3BE1FEC757500A7C06F /* Info.plist */,
+				D001E3C51FEC767700A7C06F /* TODO.md */,
 			);
 			path = SherpanyChallenge;
 			sourceTree = "<group>";
@@ -299,7 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pl.higherorder.SherpanyChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -314,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pl.higherorder.SherpanyChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
