@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ListPostsViewController.swift
 //  SherpanyChallenge
 //
 //  Created by Mikolaj Kalinowski on 12/22/17.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ListPostsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Challenge Accepted!"
     }
 }
