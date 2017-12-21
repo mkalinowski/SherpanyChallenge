@@ -74,6 +74,7 @@
 				D001E3AB1FEC757500A7C06F /* Sources */,
 				D001E3AC1FEC757500A7C06F /* Frameworks */,
 				D001E3AD1FEC757500A7C06F /* Resources */,
+				D001E3C41FEC75F400A7C06F /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -130,6 +131,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D001E3C41FEC75F400A7C06F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -s $PROJECT_DIR/.git/hooks/pre-commit; then\n    echo \"Skipping SwiftLint, as pre-commit will be ran\"\nelif which swiftlint >/dev/null; then\n    echo \"Running SwiftLint build phase. To run instead during commit, download http://pre-commit.com\"\n    swiftlint autocorrect\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D001E3AB1FEC757500A7C06F /* Sources */ = {
