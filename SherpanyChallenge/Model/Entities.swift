@@ -8,25 +8,25 @@
 
 import Foundation
 
-struct Post: Codable {
+struct RawPost: Codable {
     let userId: Int
     let id: Int
     let title: String
     let body: String
 }
 
-struct User: Codable {
+struct RawUser: Codable {
     let id: Int
     let email: String
 }
 
-struct Album: Codable {
+struct RawAlbum: Codable {
     let userId: Int
     let id: Int
     let title: String
 }
 
-struct Photo: Codable {
+struct RawPhoto: Codable {
     let albumId: Int
     let id: Int
     let title: String

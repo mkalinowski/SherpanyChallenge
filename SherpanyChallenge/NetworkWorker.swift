@@ -21,19 +21,19 @@ class NetworkWorker {
         case photos = "/photos"
     }
 
-    func getPosts(completion: @escaping (() throws -> [Post]) -> Void) {
+    func getPosts(completion: @escaping (() throws -> [RawPost]) -> Void) {
         getEntities(path: .posts, completion: completion)
     }
 
-    func getUsers(completion: @escaping (() throws -> [User]) -> Void) {
+    func getUsers(completion: @escaping (() throws -> [RawUser]) -> Void) {
         getEntities(path: .users, completion: completion)
     }
 
-    func getAlbums(completion: @escaping (() throws -> [Album]) -> Void) {
+    func getAlbums(completion: @escaping (() throws -> [RawAlbum]) -> Void) {
         getEntities(path: .albums, completion: completion)
     }
 
-    func getPhotos(completion: @escaping (() throws -> [Photo]) -> Void) {
+    func getPhotos(completion: @escaping (() throws -> [RawPhoto]) -> Void) {
         getEntities(path: .photos, completion: completion)
     }
 

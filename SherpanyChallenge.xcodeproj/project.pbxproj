@@ -15,6 +15,8 @@
 		D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CA1FEC833E00A7C06F /* Entities.swift */; };
 		D001E3CD1FEC84A300A7C06F /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */; };
 		D001E3D61FEC887300A7C06F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3D51FEC887300A7C06F /* Builder.swift */; };
+		D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */; };
+		D07004CF1FEC8FEB00D1DE95 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		D001E3D51FEC887300A7C06F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		D001E3DB1FEC8CF800A7C06F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,13 +69,14 @@
 				D001E3C51FEC767700A7C06F /* TODO.md */,
 				D001E3BE1FEC757500A7C06F /* Info.plist */,
 				D001E3B21FEC757500A7C06F /* AppDelegate.swift */,
-				D001E3CA1FEC833E00A7C06F /* Entities.swift */,
 				D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */,
 				D001E3B91FEC757500A7C06F /* Assets.xcassets */,
 				D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */,
 				D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */,
+				D001E3DD1FEC8D9700A7C06F /* Model */,
 				D001E3D91FEC8C8600A7C06F /* Utilities */,
 				D001E3D81FEC8C6E00A7C06F /* View Controllers */,
+				D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */,
 			);
 			path = SherpanyChallenge;
 			sourceTree = "<group>";
@@ -91,6 +96,15 @@
 				D001E3D51FEC887300A7C06F /* Builder.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D001E3DD1FEC8D9700A7C06F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D001E3CA1FEC833E00A7C06F /* Entities.swift */,
+				D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +199,8 @@
 				D001E3CD1FEC84A300A7C06F /* NetworkWorker.swift in Sources */,
 				D001E3C91FEC7CDE00A7C06F /* ListPostsViewController.swift in Sources */,
 				D001E3C71FEC7CC600A7C06F /* PostDetailsViewController.swift in Sources */,
+				D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */,
+				D07004CF1FEC8FEB00D1DE95 /* CoreDataWorker.swift in Sources */,
 				D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
 				D001E3D61FEC887300A7C06F /* Builder.swift in Sources */,
@@ -364,6 +380,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D001E3DB1FEC8CF800A7C06F /* Model.xcdatamodel */,
+			);
+			currentVersion = D001E3DB1FEC8CF800A7C06F /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D001E3A71FEC757500A7C06F /* Project object */;
 }
