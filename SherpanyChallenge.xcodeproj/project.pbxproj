@@ -29,6 +29,7 @@
 		D001E3CA1FEC833E00A7C06F /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		D001E3D51FEC887300A7C06F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,18 +62,35 @@
 		D001E3B11FEC757500A7C06F /* SherpanyChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				D001E3B21FEC757500A7C06F /* AppDelegate.swift */,
-				D001E3B91FEC757500A7C06F /* Assets.xcassets */,
-				D001E3BE1FEC757500A7C06F /* Info.plist */,
-				D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */,
-				D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */,
-				D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */,
 				D001E3C51FEC767700A7C06F /* TODO.md */,
+				D001E3BE1FEC757500A7C06F /* Info.plist */,
+				D001E3B21FEC757500A7C06F /* AppDelegate.swift */,
 				D001E3CA1FEC833E00A7C06F /* Entities.swift */,
 				D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */,
-				D001E3D51FEC887300A7C06F /* Builder.swift */,
+				D001E3B91FEC757500A7C06F /* Assets.xcassets */,
+				D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */,
+				D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */,
+				D001E3D91FEC8C8600A7C06F /* Utilities */,
+				D001E3D81FEC8C6E00A7C06F /* View Controllers */,
 			);
 			path = SherpanyChallenge;
+			sourceTree = "<group>";
+		};
+		D001E3D81FEC8C6E00A7C06F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */,
+				D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D001E3D91FEC8C8600A7C06F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D001E3D51FEC887300A7C06F /* Builder.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

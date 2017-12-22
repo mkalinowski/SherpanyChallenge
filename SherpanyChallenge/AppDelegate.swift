@@ -18,12 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window
             else { return false }
 
-        let splitViewControler = UISplitViewController()
-        splitViewControler.preferredDisplayMode = .allVisible
         let listPostsViewController = ListPostsViewController()
         let postDetailsViewController = PostDetailsViewController()
+
+        let splitViewControler = UISplitViewController()
         splitViewControler.viewControllers = [UINavigationController(rootViewController: listPostsViewController),
                                               postDetailsViewController]
+        splitViewControler.preferredDisplayMode = .allVisible
 
         window.rootViewController = splitViewControler
         window.makeKeyAndVisible()
