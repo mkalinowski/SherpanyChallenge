@@ -10,7 +10,7 @@
 - [ ] Persist the data in Core Data with relationships
 - [ ] Merge fetched data with persisted data, even though the returned data of the API currently never changes. See (6).
 - [x] Our UI has a master/detail view. The master view should always be visible and has a fixed width. The detail view adapts to the space available depending on orientation.
-- [ ] Display a table of all the posts in the master view. For each post display the entire post title and the users email address below the title. The cell will have a variable height because of that
+- [x] Display a table of all the posts in the master view. For each post display the entire post title and the users email address below the title. The cell will have a variable height because of that
 - [ ] Implement swipe to delete on a post cell. Because of (4) the post will appear again after the next fetch of the data which is expected.
 - [ ] Selecting a post (master) displays the detail to this post. The detail view consists of the post title, post body and related albums.
 - [ ] The creator of this post has some favorite albums that we want to display along the post. An album consists of the album title and a collection of photos that belong to the album.

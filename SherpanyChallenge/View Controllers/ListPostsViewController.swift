@@ -11,20 +11,28 @@ import UIKit
 
 class ListPostsViewController: UITableViewController {
     private var controller: NSFetchedResultsController<Post>?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Challenge Accepted!"
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(PostCell.self)
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
 
         controller = CoreDataService.shared.fetchedResultsController()
         controller?.delegate = self
-        do {
-            try controller?.performFetch()
-        } catch {
-            fatalError("Failed to fetch entities: \(error)")
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            do {
+                try self.controller?.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                fatalError("Failed to fetch entities: \(error)")
+            }
         }
     }
 }
@@ -40,26 +48,13 @@ extension ListPostsViewController {
 
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
         if let post = controller?.object(at: indexPath) {
-            cell.textLabel?.text = post.body
+            cell.textLabel?.text = post.title
+            cell.textLabel?.numberOfLines = 0
+            cell.detailTextLabel?.text = "foo bar baz"
         }
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView,
-                            titleForHeaderInSection section: Int) -> String? {
-        return controller?.sections?[section].name
-    }
-
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return controller?.sectionIndexTitles
-    }
-
-    override func tableView(_ tableView: UITableView,
-                            sectionForSectionIndexTitle title: String,
-                            at index: Int) -> Int {
-        return controller?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
 }
 
