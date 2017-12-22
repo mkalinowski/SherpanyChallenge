@@ -2,11 +2,11 @@
 
 - [x] Set the navigation bar title to “Challenge Accepted!”
 - [x] Use Swift
-- [ ] Fetch the data every time the app becomes active:
-- [ ] Posts: http://jsonplaceholder.typicode.com/posts/
-- [ ] Users: http://jsonplaceholder.typicode.com/users
-- [ ] Photos: http://jsonplaceholder.typicode.com/albums
-- [ ] Photos: http://jsonplaceholder.typicode.com/photos
+- [x] Fetch the data every time the app becomes active:
+- [x] Posts: http://jsonplaceholder.typicode.com/posts/
+- [x] Users: http://jsonplaceholder.typicode.com/users
+- [x] Albums: http://jsonplaceholder.typicode.com/albums
+- [x] Photos: http://jsonplaceholder.typicode.com/photos
 - [ ] Persist the data in Core Data with relationships
 - [ ] Merge fetched data with persisted data, even though the returned data of the API currently never changes. See (6).
 - [x] Our UI has a master/detail view. The master view should always be visible and has a fixed width. The detail view adapts to the space available depending on orientation.

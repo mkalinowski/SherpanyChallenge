@@ -12,6 +12,9 @@
 		D001E3BD1FEC757500A7C06F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */; };
 		D001E3C71FEC7CC600A7C06F /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */; };
 		D001E3C91FEC7CDE00A7C06F /* ListPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */; };
+		D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CA1FEC833E00A7C06F /* Entities.swift */; };
+		D001E3CD1FEC84A300A7C06F /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */; };
+		D001E3D61FEC887300A7C06F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3D51FEC887300A7C06F /* Builder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		D001E3C51FEC767700A7C06F /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPostsViewController.swift; sourceTree = "<group>"; };
+		D001E3CA1FEC833E00A7C06F /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
+		D001E3D51FEC887300A7C06F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,9 @@
 				D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */,
 				D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */,
 				D001E3C51FEC767700A7C06F /* TODO.md */,
+				D001E3CA1FEC833E00A7C06F /* Entities.swift */,
+				D001E3CC1FEC84A300A7C06F /* NetworkWorker.swift */,
+				D001E3D51FEC887300A7C06F /* Builder.swift */,
 			);
 			path = SherpanyChallenge;
 			sourceTree = "<group>";
@@ -155,9 +164,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D001E3CD1FEC84A300A7C06F /* NetworkWorker.swift in Sources */,
 				D001E3C91FEC7CDE00A7C06F /* ListPostsViewController.swift in Sources */,
 				D001E3C71FEC7CC600A7C06F /* PostDetailsViewController.swift in Sources */,
+				D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
+				D001E3D61FEC887300A7C06F /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

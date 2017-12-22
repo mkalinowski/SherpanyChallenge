@@ -10,7 +10,6 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
     func application(_ application: UIApplication,
@@ -30,5 +29,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         return true
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        let networkWorker = NetworkWorker()
+
+        networkWorker.getPosts { posts in
+            do {
+                let posts = try posts()
+                NSLog("Posts: \(posts.first)")
+            } catch {
+                NSLog("Error: \(error)")
+            }
+        }
+
+        networkWorker.getUsers { users in
+            do {
+                let users = try users()
+                NSLog("Users: \(users.first)")
+            } catch {
+                NSLog("Error: \(error)")
+            }
+        }
+
+        networkWorker.getAlbums { albums in
+            do {
+                let albums = try albums()
+                NSLog("Albums: \(albums.first)")
+            } catch {
+                NSLog("Error: \(error)")
+            }
+        }
+
+        networkWorker.getPhotos { photos in
+            do {
+                let photos = try photos()
+                NSLog("Photos: \(photos.first)")
+            } catch {
+                NSLog("Error: \(error)")
+            }
+        }
     }
 }
