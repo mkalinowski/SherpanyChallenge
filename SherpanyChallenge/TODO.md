@@ -12,7 +12,7 @@
 - [x] Our UI has a master/detail view. The master view should always be visible and has a fixed width. The detail view adapts to the space available depending on orientation.
 - [x] Display a table of all the posts in the master view. For each post display the entire post title and the users email address below the title. The cell will have a variable height because of that
 - [x] Implement swipe to delete on a post cell. Because of (4) the post will appear again after the next fetch of the data which is expected.
-- [ ] Selecting a post (master) displays the detail to this post. The detail view consists of the post title, post body and related albums.
+- [.] Selecting a post (master) displays the detail to this post. The detail view consists of the post title, post body and related albums.
 - [ ] The creator of this post has some favorite albums that we want to display along the post. An album consists of the album title and a collection of photos that belong to the album.
 - [ ] The photos should be lazy-ly loaded when needed and cached. If the photo is in the cache it should take that, otherwise load from web and update the photo cell.
 - [ ] In general, provide UI feedback where you see fit.
