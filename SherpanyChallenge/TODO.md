@@ -7,8 +7,8 @@
 - [x] Users: http://jsonplaceholder.typicode.com/users
 - [x] Albums: http://jsonplaceholder.typicode.com/albums
 - [x] Photos: http://jsonplaceholder.typicode.com/photos
-- [ ] Persist the data in Core Data with relationships
-- [ ] Merge fetched data with persisted data, even though the returned data of the API currently never changes. See (6).
+- [x] Persist the data in Core Data with relationships
+- [x] Merge fetched data with persisted data, even though the returned data of the API currently never changes. See (6).
 - [x] Our UI has a master/detail view. The master view should always be visible and has a fixed width. The detail view adapts to the space available depending on orientation.
 - [x] Display a table of all the posts in the master view. For each post display the entire post title and the users email address below the title. The cell will have a variable height because of that
 - [x] Implement swipe to delete on a post cell. Because of (4) the post will appear again after the next fetch of the data which is expected.

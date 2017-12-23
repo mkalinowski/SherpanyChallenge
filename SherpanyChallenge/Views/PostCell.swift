@@ -26,6 +26,7 @@ class PostCell: UITableViewCell {
                 UIFont(descriptor: $0, size: 0.0) // keep original size
             })
 
+        textLabel?.numberOfLines = 0
         textLabel?.textColor = UIColor(named: "sherpanyBlue")
         textLabel?.highlightedTextColor = .white
 

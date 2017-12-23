@@ -6,6 +6,7 @@
 //  Copyright © 2017 Higher Order. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 @UIApplicationMain

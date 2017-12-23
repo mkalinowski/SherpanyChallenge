@@ -51,8 +51,7 @@ extension ListPostsViewController {
         let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
         if let post = controller?.object(at: indexPath) {
             cell.textLabel?.text = post.title
-            cell.textLabel?.numberOfLines = 0
-            cell.detailTextLabel?.text = "foo bar baz"
+            cell.detailTextLabel?.text = post.user?.email
         }
         return cell
     }
