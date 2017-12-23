@@ -27,14 +27,12 @@ final class CoreDataService {
         }
         group.wait()
 
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
 
     func fetchedResultsController<Entity: NSManagedObject>(sortDescriptor: String = "id") -> NSFetchedResultsController<Entity>? {
         let context = persistentContainer.viewContext
-
         guard let entityName = Entity.entity().name
             else { return nil }
 
@@ -49,5 +47,27 @@ final class CoreDataService {
                                        sectionNameKeyPath: nil,
                                        cacheName: nil)
         return fetchedResultsController
+    }
+}
+
+extension NSManagedObjectContext {
+    // TODO: Generic
+    func importMultiple(_ rawPosts: [RawPost]) {
+        // Note: Potential optimisation - fetch all Entities sorted by id,
+        // sort all json objects by id and merge them manually with two iterators,
+        // deciding `online` whether to update or insert
+
+        mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
+        rawPosts
+            .map {
+                let post = Post(context: self)
+                post.body = $0.body
+                post.id = Int64($0.id)
+                post.title = $0.title
+                return post
+            }
+            .forEach {
+                insert($0)
+        }
     }
 }

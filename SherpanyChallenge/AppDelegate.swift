@@ -34,38 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         let networkWorker = NetworkWorker()
-
-        networkWorker.getPosts { posts in
+        networkWorker.getPosts { rawPosts in
             do {
-                let posts = try posts()
-                NSLog("Posts: \(posts.first)")
-            } catch {
-                NSLog("Error: \(error)")
-            }
-        }
+                let rawPosts = try rawPosts()
+                CoreDataService.shared.persistentContainer.performBackgroundTask { context in
+                    context.importMultiple(rawPosts)
 
-        networkWorker.getUsers { users in
-            do {
-                let users = try users()
-                NSLog("Users: \(users.first)")
-            } catch {
-                NSLog("Error: \(error)")
-            }
-        }
-
-        networkWorker.getAlbums { albums in
-            do {
-                let albums = try albums()
-                NSLog("Albums: \(albums.first)")
-            } catch {
-                NSLog("Error: \(error)")
-            }
-        }
-
-        networkWorker.getPhotos { photos in
-            do {
-                let photos = try photos()
-                NSLog("Photos: \(photos.first)")
+                    do {
+                        try context.save()
+                    } catch {
+                        NSLog("Error: \(error)")
+                    }
+                }
             } catch {
                 NSLog("Error: \(error)")
             }
