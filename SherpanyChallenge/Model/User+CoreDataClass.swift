@@ -11,7 +11,11 @@ import CoreData
 import Foundation
 
 @objc(User)
-public class User: NSManagedObject, Decodable {
+public class User: NSManagedObject, Decodable, Downloadable {
+    static var path: String {
+        return "/users"
+    }
+
     enum CodingKeys: String, CodingKey {
         case email
         case id
@@ -29,11 +33,5 @@ public class User: NSManagedObject, Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         email = try container.decode(String.self, forKey: .email)
         id = try container.decode(Int64.self, forKey: .id)
-    }
-}
-
-extension User: Downloadable {
-    static var path: String {
-        return "/users"
     }
 }

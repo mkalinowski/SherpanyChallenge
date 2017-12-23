@@ -11,7 +11,11 @@ import CoreData
 import Foundation
 
 @objc(Post)
-public class Post: NSManagedObject, Decodable {
+public class Post: NSManagedObject, Decodable, Downloadable {
+    static var path: String {
+        return "/posts"
+    }
+
     enum CodingKeys: String, CodingKey {
         case body
         case id
@@ -37,11 +41,5 @@ public class Post: NSManagedObject, Decodable {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == \(userId)")
         user = (try context.fetch(fetchRequest)).first
-    }
-}
-
-extension Post: Downloadable {
-    static var path: String {
-        return "/posts"
     }
 }

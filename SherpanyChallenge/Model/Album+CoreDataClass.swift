@@ -11,7 +11,11 @@ import CoreData
 import Foundation
 
 @objc(Album)
-public class Album: NSManagedObject, Decodable {
+public class Album: NSManagedObject, Decodable, Downloadable {
+    static var path: String {
+        return "/albums"
+    }
+
     enum CodingKeys: String, CodingKey {
         case title
         case id
@@ -36,11 +40,5 @@ public class Album: NSManagedObject, Decodable {
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == \(userId)")
         user = (try context.fetch(fetchRequest)).first
-    }
-}
-
-extension Album: Downloadable {
-    static var path: String {
-        return "/albums"
     }
 }
