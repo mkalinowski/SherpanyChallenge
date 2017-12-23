@@ -1,5 +1,5 @@
 //
-//  CoreDataWorker.swift
+//  PersistenceService.swift
 //  SherpanyChallenge
 //
 //  Created by Mikolaj Kalinowski on 12/22/17.
@@ -20,8 +20,7 @@ extension CodingUserInfoKey {
     static let context = CodingUserInfoKey(rawValue: "context")
 }
 
-final class CoreDataService {
-    static let shared = CoreDataService() // TODO: Inject
+final class PersistenceService {
     var errorHandler: (Error) -> Void = { NSLog("CoreData error \($0)") }
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -79,6 +78,17 @@ final class CoreDataService {
                 try context.save()
             } catch {
                 NSLog("Error: \(error)")
+            }
+        }
+    }
+
+    func deleteObject(with objectID: NSManagedObjectID) {
+        persistentContainer.performBackgroundTask { context in
+            context.delete(context.object(with: objectID))
+            do {
+                try context.save()
+            } catch {
+                NSLog("\(error)")
             }
         }
     }

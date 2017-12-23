@@ -11,6 +11,16 @@ import UIKit
 
 class ListPostsViewController: UITableViewController {
     private var controller: NSFetchedResultsController<Post>?
+    private var persistenceService: PersistenceService?
+
+    init(persistenceService: PersistenceService) {
+        self.persistenceService = persistenceService
+        super.init(style: .plain)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +30,7 @@ class ListPostsViewController: UITableViewController {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
 
-        controller = CoreDataService.shared.fetchedResultsController()
+        controller = persistenceService?.fetchedResultsController()
         controller?.delegate = self
     }
 
@@ -57,18 +67,12 @@ extension ListPostsViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
-            guard let postObjectID = self?.controller?.object(at: indexPath).objectID
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in
+            guard let strongSelf = self,
+                let postObjectID = strongSelf.controller?.object(at: indexPath).objectID
                 else { return }
 
-            CoreDataService.shared.persistentContainer.performBackgroundTask { context in
-                context.delete(context.object(with: postObjectID))
-                do {
-                    try context.save()
-                } catch {
-                    NSLog("\(error)")
-                }
-            }
+            strongSelf.persistenceService?.deleteObject(with: postObjectID)
         }
 
         return [delete]

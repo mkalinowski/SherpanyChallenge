@@ -12,11 +12,10 @@
 		D001E3BD1FEC757500A7C06F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */; };
 		D001E3C71FEC7CC600A7C06F /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */; };
 		D001E3C91FEC7CDE00A7C06F /* ListPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */; };
-		D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CA1FEC833E00A7C06F /* Entities.swift */; };
 		D001E3CD1FEC84A300A7C06F /* Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CC1FEC84A300A7C06F /* Downloadable.swift */; };
 		D001E3D61FEC887300A7C06F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3D51FEC887300A7C06F /* Builder.swift */; };
 		D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */; };
-		D07004CF1FEC8FEB00D1DE95 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */; };
+		D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004CE1FEC8FEB00D1DE95 /* PersistenceService.swift */; };
 		D07004D21FEDAC4000D1DE95 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */; };
 		D07004D51FEDAD7300D1DE95 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D41FEDAD7300D1DE95 /* PostCell.swift */; };
 		D07004DA1FEDFA6500D1DE95 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */; };
@@ -34,12 +33,11 @@
 		D001E3C51FEC767700A7C06F /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		D001E3C61FEC7CC600A7C06F /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		D001E3C81FEC7CDE00A7C06F /* ListPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPostsViewController.swift; sourceTree = "<group>"; };
-		D001E3CA1FEC833E00A7C06F /* Entities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
 		D001E3CC1FEC84A300A7C06F /* Downloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloadable.swift; sourceTree = "<group>"; };
 		D001E3D51FEC887300A7C06F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		D001E3DB1FEC8CF800A7C06F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
+		D07004CE1FEC8FEB00D1DE95 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		D07004D41FEDAD7300D1DE95 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -89,7 +87,7 @@
 				D001E3DD1FEC8D9700A7C06F /* Model */,
 				D001E3D91FEC8C8600A7C06F /* Utilities */,
 				D001E3D81FEC8C6E00A7C06F /* View Controllers */,
-				D07004CE1FEC8FEB00D1DE95 /* CoreDataWorker.swift */,
+				D07004CE1FEC8FEB00D1DE95 /* PersistenceService.swift */,
 			);
 			path = SherpanyChallenge;
 			sourceTree = "<group>";
@@ -119,7 +117,6 @@
 				D07004D71FEDFA6500D1DE95 /* Post+CoreDataProperties.swift */,
 				D07004D81FEDFA6500D1DE95 /* User+CoreDataClass.swift */,
 				D07004D91FEDFA6500D1DE95 /* User+CoreDataProperties.swift */,
-				D001E3CA1FEC833E00A7C06F /* Entities.swift */,
 				D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */,
 			);
 			path = Model;
@@ -230,8 +227,7 @@
 				D07004DA1FEDFA6500D1DE95 /* Post+CoreDataClass.swift in Sources */,
 				D07004DB1FEDFA6500D1DE95 /* Post+CoreDataProperties.swift in Sources */,
 				D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */,
-				D07004CF1FEC8FEB00D1DE95 /* CoreDataWorker.swift in Sources */,
-				D001E3CB1FEC833E00A7C06F /* Entities.swift in Sources */,
+				D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */,
 				D07004DD1FEDFA6500D1DE95 /* User+CoreDataProperties.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
 				D001E3D61FEC887300A7C06F /* Builder.swift in Sources */,

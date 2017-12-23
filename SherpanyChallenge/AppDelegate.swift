@@ -12,6 +12,7 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    private var persistenceService = PersistenceService()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -19,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window
             else { return false }
 
-        let listPostsViewController = ListPostsViewController()
+        let listPostsViewController = ListPostsViewController(persistenceService: persistenceService)
         let postDetailsViewController = PostDetailsViewController()
 
         let splitViewControler = UISplitViewController()
@@ -37,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var usersData: Data? = nil
         var postsData: Data? = nil
 
+        // TODO: Extract
         let sync = DispatchGroup()
         sync.enter()
         User.download { data in
@@ -67,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NSLog("Error: No data downloaded")
                     return
             }
-            CoreDataService.shared.upsert(users: usersData, posts: postsData)
+            self.persistenceService.upsert(users: usersData, posts: postsData)
         }
     }
 }

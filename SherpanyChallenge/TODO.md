@@ -23,3 +23,5 @@
 - [ ] Because the collection of photos can get quite long, we would like the headers to stick to the top.
 - [ ] Include a search bar to search in the master view and provide live feedback to the user while searching.
 
+- [ ] Logs
+- [ ] Error handling
