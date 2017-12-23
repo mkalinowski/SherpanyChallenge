@@ -56,6 +56,24 @@ extension ListPostsViewController {
         }
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
+            guard let postObjectID = self?.controller?.object(at: indexPath).objectID
+                else { return }
+
+            CoreDataService.shared.persistentContainer.performBackgroundTask { context in
+                context.delete(context.object(with: postObjectID))
+                do {
+                    try context.save()
+                } catch {
+                    NSLog("\(error)")
+                }
+            }
+        }
+
+        return [delete]
+    }
 }
 
 extension ListPostsViewController: NSFetchedResultsControllerDelegate {
@@ -65,5 +83,46 @@ extension ListPostsViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        default:
+            return
+        }
+    }
+
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath
+                else { break }
+            tableView.insertRows(at: [newIndexPath], with: .fade)
+        case .delete:
+            guard let indexPath = indexPath
+                else { break }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .update:
+            guard let indexPath = indexPath
+                else { break }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        case .move:
+            guard let indexPath = indexPath,
+                let newIndexPath = newIndexPath
+                else { break }
+            tableView.reloadRows(at: [indexPath, newIndexPath], with: .automatic)
+        }
     }
 }
