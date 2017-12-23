@@ -36,8 +36,7 @@ public class Post: NSManagedObject, Decodable {
 
         let fetchRequest: NSFetchRequest<User> = User.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == \(userId)")
-        let users = try context.fetch(fetchRequest)
-        self.user = users.first
+        user = (try context.fetch(fetchRequest)).first
     }
 }
 

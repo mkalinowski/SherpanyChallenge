@@ -36,41 +36,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        var usersData: Data? = nil
-        var postsData: Data? = nil
+        var results: [String: Data] = [:]
+        let types: [Downloadable.Type] = [User.self, Post.self, Album.self, Photo.self]
 
-        // TODO: Extract
         let sync = DispatchGroup()
-        sync.enter()
-        User.download { data in
-            do {
-                let data = try data()
-                usersData = data
-            } catch {
-                NSLog("Error: \(error)")
+        for type in types {
+            sync.enter()
+            type.download { data in
+                do {
+                    let data = try data()
+                    results[String(describing: type)] = data
+                } catch {
+                    NSLog("Error: \(error)")
+                }
+                sync.leave()
             }
-            sync.leave()
-        }
-
-        sync.enter()
-        Post.download { data in
-            do {
-                let data = try data()
-                postsData = data
-            } catch {
-                NSLog("Error: \(error)")
-            }
-            sync.leave()
         }
 
         sync.notify(queue: .main) {
-            guard let usersData = usersData,
-                let postsData = postsData
+            guard let users = results[String(describing: User.self)],
+                let posts = results[String(describing: Post.self)],
+                let albums = results[String(describing: Album.self)],
+                let photos = results[String(describing: Photo.self)]
                 else {
                     NSLog("Error: No data downloaded")
                     return
             }
-            self.persistenceService.upsert(users: usersData, posts: postsData)
+            self.persistenceService.upsert(users: users, posts: posts, albums: albums, photos: photos)
         }
     }
 }

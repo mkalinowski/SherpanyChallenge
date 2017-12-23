@@ -58,7 +58,7 @@ final class PersistenceService {
         return fetchedResultsController
     }
 
-    func upsert(users: Data, posts: Data) {
+    func upsert(users: Data, posts: Data, albums: Data, photos: Data) {
         persistentContainer.performBackgroundTask { context in
             context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
 
@@ -71,9 +71,13 @@ final class PersistenceService {
             do {
                 let importedUsers = try decoder.decode([User].self, from: users)
                 let importedPosts = try decoder.decode([Post].self, from: posts)
+                let importedAlbums = try decoder.decode([Album].self, from: albums)
+                let importedPhotos = try decoder.decode([Photo].self, from: photos)
 
                 NSLog("Imported users: \(importedUsers.count)")
                 NSLog("Imported posts: \(importedPosts.count)")
+                NSLog("Imported albums: \(importedAlbums.count)")
+                NSLog("Imported photos: \(importedPhotos.count)")
 
                 try context.save()
             } catch {
