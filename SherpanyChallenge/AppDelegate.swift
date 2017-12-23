@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window
             else { return false }
 
-        let listPostsViewController = ListPostsViewController(persistenceService: persistenceService)
         let postDetailsViewController = PostDetailsViewController()
+        let listPostsViewController = ListPostsViewController(persistenceService: persistenceService)
+        listPostsViewController.listPostsViewControllerDelegate = postDetailsViewController
 
         let splitViewControler = UISplitViewController()
         splitViewControler.viewControllers = [UINavigationController(rootViewController: listPostsViewController),

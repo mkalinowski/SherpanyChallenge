@@ -8,9 +8,13 @@
 
 import UIKit
 
-class PostDetailsViewController: UIViewController {
+class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+    }
+
+    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post) {
+        NSLog("Selected \(post.title)")
     }
 }

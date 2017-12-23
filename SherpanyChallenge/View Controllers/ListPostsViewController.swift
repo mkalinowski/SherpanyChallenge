@@ -9,7 +9,12 @@
 import CoreData
 import UIKit
 
+protocol ListPostsViewControllerDelegate: NSObjectProtocol {
+    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post)
+}
+
 class ListPostsViewController: UITableViewController {
+    weak var listPostsViewControllerDelegate: ListPostsViewControllerDelegate?
     private var controller: NSFetchedResultsController<Post>?
     private var persistenceService: PersistenceService?
 
@@ -76,6 +81,12 @@ extension ListPostsViewController {
         }
 
         return [delete]
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let post = controller?.object(at: indexPath) {
+            listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: post)
+        }
     }
 }
 
