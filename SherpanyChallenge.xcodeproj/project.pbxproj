@@ -19,9 +19,13 @@
 		D07004D21FEDAC4000D1DE95 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */; };
 		D07004D51FEDAD7300D1DE95 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D41FEDAD7300D1DE95 /* PostCell.swift */; };
 		D07004DA1FEDFA6500D1DE95 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */; };
-		D07004DB1FEDFA6500D1DE95 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D71FEDFA6500D1DE95 /* Post+CoreDataProperties.swift */; };
 		D07004DC1FEDFA6500D1DE95 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D81FEDFA6500D1DE95 /* User+CoreDataClass.swift */; };
-		D07004DD1FEDFA6500D1DE95 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D91FEDFA6500D1DE95 /* User+CoreDataProperties.swift */; };
+		D07004E41FEE176A00D1DE95 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004DE1FEE176A00D1DE95 /* Post+CoreDataProperties.swift */; };
+		D07004E61FEE176A00D1DE95 /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004E01FEE176A00D1DE95 /* Photo+CoreDataClass.swift */; };
+		D07004E71FEE176A00D1DE95 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004E11FEE176A00D1DE95 /* Photo+CoreDataProperties.swift */; };
+		D07004E81FEE176A00D1DE95 /* Album+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004E21FEE176A00D1DE95 /* Album+CoreDataClass.swift */; };
+		D07004E91FEE176A00D1DE95 /* Album+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004E31FEE176A00D1DE95 /* Album+CoreDataProperties.swift */; };
+		D0E2CBB91FEE1961005047F5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2CBB81FEE1961005047F5 /* User+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,9 +45,13 @@
 		D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		D07004D41FEDAD7300D1DE95 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D07004D71FEDFA6500D1DE95 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D07004D81FEDFA6500D1DE95 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
-		D07004D91FEDFA6500D1DE95 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D07004DE1FEE176A00D1DE95 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D07004E01FEE176A00D1DE95 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D07004E11FEE176A00D1DE95 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D07004E21FEE176A00D1DE95 /* Album+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataClass.swift"; sourceTree = "<group>"; };
+		D07004E31FEE176A00D1DE95 /* Album+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Album+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D0E2CBB81FEE1961005047F5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,11 +121,15 @@
 		D001E3DD1FEC8D9700A7C06F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */,
-				D07004D71FEDFA6500D1DE95 /* Post+CoreDataProperties.swift */,
-				D07004D81FEDFA6500D1DE95 /* User+CoreDataClass.swift */,
-				D07004D91FEDFA6500D1DE95 /* User+CoreDataProperties.swift */,
 				D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */,
+				D07004E21FEE176A00D1DE95 /* Album+CoreDataClass.swift */,
+				D07004E31FEE176A00D1DE95 /* Album+CoreDataProperties.swift */,
+				D07004E01FEE176A00D1DE95 /* Photo+CoreDataClass.swift */,
+				D07004E11FEE176A00D1DE95 /* Photo+CoreDataProperties.swift */,
+				D07004D61FEDFA6400D1DE95 /* Post+CoreDataClass.swift */,
+				D07004DE1FEE176A00D1DE95 /* Post+CoreDataProperties.swift */,
+				D07004D81FEDFA6500D1DE95 /* User+CoreDataClass.swift */,
+				D0E2CBB81FEE1961005047F5 /* User+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,15 +233,19 @@
 			files = (
 				D07004D21FEDAC4000D1DE95 /* UITableView+Register.swift in Sources */,
 				D001E3CD1FEC84A300A7C06F /* Downloadable.swift in Sources */,
+				D07004E61FEE176A00D1DE95 /* Photo+CoreDataClass.swift in Sources */,
+				D07004E91FEE176A00D1DE95 /* Album+CoreDataProperties.swift in Sources */,
 				D001E3C91FEC7CDE00A7C06F /* ListPostsViewController.swift in Sources */,
 				D07004DC1FEDFA6500D1DE95 /* User+CoreDataClass.swift in Sources */,
+				D07004E71FEE176A00D1DE95 /* Photo+CoreDataProperties.swift in Sources */,
 				D001E3C71FEC7CC600A7C06F /* PostDetailsViewController.swift in Sources */,
+				D0E2CBB91FEE1961005047F5 /* User+CoreDataProperties.swift in Sources */,
 				D07004DA1FEDFA6500D1DE95 /* Post+CoreDataClass.swift in Sources */,
-				D07004DB1FEDFA6500D1DE95 /* Post+CoreDataProperties.swift in Sources */,
 				D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */,
+				D07004E81FEE176A00D1DE95 /* Album+CoreDataClass.swift in Sources */,
 				D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */,
-				D07004DD1FEDFA6500D1DE95 /* User+CoreDataProperties.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
+				D07004E41FEE176A00D1DE95 /* Post+CoreDataProperties.swift in Sources */,
 				D001E3D61FEC887300A7C06F /* Builder.swift in Sources */,
 				D07004D51FEDAD7300D1DE95 /* PostCell.swift in Sources */,
 			);
