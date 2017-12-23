@@ -10,6 +10,16 @@ import CoreData
 import Foundation
 import UIKit
 
+extension NSManagedObject {
+    enum Error: Swift.Error {
+        case noContext
+    }
+}
+
+extension CodingUserInfoKey {
+    static let context = CodingUserInfoKey(rawValue: "context")
+}
+
 final class CoreDataService {
     static let shared = CoreDataService() // TODO: Inject
     var errorHandler: (Error) -> Void = { NSLog("CoreData error \($0)") }
@@ -48,26 +58,28 @@ final class CoreDataService {
                                        cacheName: nil)
         return fetchedResultsController
     }
-}
 
-extension NSManagedObjectContext {
-    // TODO: Generic
-    func importMultiple(_ rawPosts: [RawPost]) {
-        // Note: Potential optimisation - fetch all Entities sorted by id,
-        // sort all json objects by id and merge them manually with two iterators,
-        // deciding `online` whether to update or insert
+    func upsert(users: Data, posts: Data) {
+        persistentContainer.performBackgroundTask { context in
+            context.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
 
-        mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
-        rawPosts
-            .map {
-                let post = Post(context: self)
-                post.body = $0.body
-                post.id = Int64($0.id)
-                post.title = $0.title
-                return post
+            guard let contextKey = CodingUserInfoKey.context
+                else { return }
+
+            let decoder = JSONDecoder()
+            decoder.userInfo[contextKey] = context
+
+            do {
+                let importedUsers = try decoder.decode([User].self, from: users)
+                let importedPosts = try decoder.decode([Post].self, from: posts)
+
+                NSLog("Imported users: \(importedUsers.count)")
+                NSLog("Imported posts: \(importedPosts.count)")
+
+                try context.save()
+            } catch {
+                NSLog("Error: \(error)")
             }
-            .forEach {
-                insert($0)
         }
     }
 }

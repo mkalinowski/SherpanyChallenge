@@ -6,20 +6,10 @@
 //  Copyright © 2017 Higher Order. All rights reserved.
 //
 
+import CoreData
 import Foundation
 
-struct RawPost: Codable {
-    let userId: Int
-    let id: Int
-    let title: String
-    let body: String
-}
-
-struct RawUser: Codable {
-    let id: Int
-    let email: String
-}
-
+// TODO: Remove after conversion to MOCs
 struct RawAlbum: Codable {
     let userId: Int
     let id: Int

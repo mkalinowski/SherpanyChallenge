@@ -33,22 +33,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        let networkWorker = NetworkWorker()
-        networkWorker.getPosts { rawPosts in
-            do {
-                let rawPosts = try rawPosts()
-                CoreDataService.shared.persistentContainer.performBackgroundTask { context in
-                    context.importMultiple(rawPosts)
+        var usersData: Data? = nil
+        var postsData: Data? = nil
 
-                    do {
-                        try context.save()
-                    } catch {
-                        NSLog("Error: \(error)")
-                    }
-                }
+        let sync = DispatchGroup()
+        sync.enter()
+        User.download { data in
+            do {
+                let data = try data()
+                usersData = data
             } catch {
                 NSLog("Error: \(error)")
             }
+            sync.leave()
+        }
+
+        sync.enter()
+        Post.download { data in
+            do {
+                let data = try data()
+                postsData = data
+            } catch {
+                NSLog("Error: \(error)")
+            }
+            sync.leave()
+        }
+
+        sync.notify(queue: .main) {
+            guard let usersData = usersData,
+                let postsData = postsData
+                else {
+                    NSLog("Error: No data downloaded")
+                    return
+            }
+            CoreDataService.shared.upsert(users: usersData, posts: postsData)
         }
     }
 }
