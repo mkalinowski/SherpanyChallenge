@@ -16,6 +16,7 @@ extension UITableViewController: NSFetchedResultsControllerDelegate {
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+        tableView.refreshControl?.endRefreshing()
     }
 
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,

@@ -41,9 +41,27 @@ class ListPostsViewController: UITableViewController {
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
 
+        refreshControl = UIRefreshControl()
+
+        if let refreshControl = refreshControl {
+            refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        }
+
+        do {
+            tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height ?? 0)),
+                                       animated: true)
+            try fetchedResultsController?.performFetch()
+            tableView.refreshControl?.beginRefreshing()
+            tableView.reloadData()
+        } catch {
+            fatalError("Failed to fetch entities: \(error)")
+        }
+    }
+
+    @objc private func refresh(_ sender: UIRefreshControl) {
         do {
             try fetchedResultsController?.performFetch()
-            tableView.reloadData()
+            tableView.refreshControl?.beginRefreshing()
         } catch {
             fatalError("Failed to fetch entities: \(error)")
         }
