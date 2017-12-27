@@ -41,6 +41,11 @@ public class Album: NSManagedObject, Decodable, Downloadable {
         fetchRequest.predicate = NSPredicate(format: "id == \(userId)")
         user = (try context.fetch(fetchRequest)).first
     }
+
+    public var sortedPhotos: [Photo]? {
+        // TODO: Not optimal
+        return (photos as? Set<Photo>)?.sorted()
+    }
 }
 
 extension Album: Comparable {

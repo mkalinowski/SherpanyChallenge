@@ -89,21 +89,23 @@ extension PostDetailsViewController: UICollectionViewDelegateFlowLayout {
 
 extension PostDetailsViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let albums: [Album] = (post?.user?.albums as? Set<Album>)?.sorted() ?? []
-        return albums.count
+        return post?.user?.sortedAlbums?.count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
-        let albums: [Album] = (post?.user?.albums as? Set<Album>)?.sorted() ?? []
-        let album: Album = albums[section] // TODO: safe
-        return album.photos?.count ?? 0
+        let album: Album? = post?.user?.sortedAlbums?[safe: section]
+        return album?.sortedPhotos?.count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.titleLabel.text = "\(indexPath)"
+
+        if let album: Album = post?.user?.sortedAlbums?[safe: indexPath.section],
+            let photo: Photo = album.sortedPhotos?[safe: indexPath.item] {
+            cell.titleLabel.text = "\(photo.id)"
+        }
         return cell
     }
 

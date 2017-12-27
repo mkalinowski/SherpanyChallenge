@@ -34,4 +34,8 @@ public class User: NSManagedObject, Decodable, Downloadable {
         email = try container.decode(String.self, forKey: .email)
         id = try container.decode(Int64.self, forKey: .id)
     }
+
+    public var sortedAlbums: [Album]? {
+        return (albums as? Set<Album>)?.sorted()
+    }
 }
