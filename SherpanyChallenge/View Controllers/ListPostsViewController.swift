@@ -16,11 +16,10 @@ protocol ListPostsViewControllerDelegate: NSObjectProtocol {
 class ListPostsViewController: UITableViewController {
     weak var listPostsViewControllerDelegate: ListPostsViewControllerDelegate?
 
-    private lazy var fetchedResultsController: NSFetchedResultsController<Post>? = {
-        let fetchedResultsController: NSFetchedResultsController<Post>? = persistenceService?.fetchedResultsController()
-        fetchedResultsController?.delegate = self
-        return fetchedResultsController
-    }()
+    private lazy var fetchedResultsController: NSFetchedResultsController<Post>? =
+        self.persistenceService?.fetchedResultsController()?.with {
+            $0.delegate = self
+    }
 
     private var persistenceService: PersistenceService?
 
