@@ -9,7 +9,7 @@
 import UIKit
 
 class PhotoCell: UICollectionViewCell {
-    lazy var titleLabel: UILabel = UILabel()
+    lazy var imageView: RemoteImageView = RemoteImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,12 +22,15 @@ class PhotoCell: UICollectionViewCell {
     }
 
     private func configure() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(imageView)
 
-        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
 
         contentView.layer.borderColor = UIColor.black.cgColor
         contentView.layer.borderWidth = 1
@@ -36,6 +39,7 @@ class PhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         isSelected = false
-        titleLabel.text = ""
+        imageView.image = nil
+        imageView.cancel()
     }
 }

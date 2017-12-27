@@ -66,7 +66,6 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
             bodyLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor),
             bodyLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             bodyLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-
             collectionView.topAnchor.constraint(equalTo: bodyLabel.safeAreaLayoutGuide.bottomAnchor,
                                                 constant: 10),
             collectionView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -101,24 +100,38 @@ extension PostDetailsViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
-
-        if let album: Album = post?.user?.sortedAlbums?[safe: indexPath.section],
-            let photo: Photo = album.sortedPhotos?[safe: indexPath.item] {
-            cell.titleLabel.text = "\(photo.id)"
-        }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        guard let photoCell: PhotoCell = cell as? PhotoCell,
+            let album = post?.user?.sortedAlbums?[safe: indexPath.section],
+            let photo = album.sortedPhotos?[safe: indexPath.item],
+            let thumbnailUrl = photo.thumbnailUrl
+            else { return }
+        photoCell.imageView.download(thumbnailUrl)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didEndDisplaying cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        guard let photoCell: PhotoCell = cell as? PhotoCell
+            else { return }
+        photoCell.imageView.cancel()
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                viewForSupplementaryElementOfKind kind: String,
                                at indexPath: IndexPath) -> UICollectionReusableView {
-        let albums: [Album] = (post?.user?.albums as? Set<Album>)?.sorted() ?? []
-        let album: Album = albums[indexPath.section]
-
         let cell: AlbumView =
             collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                             for: indexPath)
-        cell.titleLabel.text = album.title
+
+        if let album: Album = post?.user?.sortedAlbums?[safe: indexPath.section] {
+            cell.titleLabel.text = album.title
+        }
 
         return cell
     }
