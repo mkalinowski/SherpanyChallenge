@@ -12,17 +12,11 @@ import UIKit
 class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
     private var post: Post? {
         didSet {
-            titleLabel.text = post?.title
+            title = post?.title
             bodyLabel.text = post?.body
             collectionView.reloadData()
             collectionView.setContentOffset(.zero, animated: false)
         }
-    }
-
-    private let titleLabel = UILabel().with {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        $0.numberOfLines = 0
     }
 
     private let bodyLabel = UILabel().with {
@@ -53,17 +47,13 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        view.addSubview(titleLabel)
         view.addSubview(bodyLabel)
         view.addSubview(collectionView)
 
         additionalSafeAreaInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            bodyLabel.topAnchor.constraint(equalTo: titleLabel.safeAreaLayoutGuide.bottomAnchor),
+            bodyLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             bodyLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             bodyLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             collectionView.topAnchor.constraint(equalTo: bodyLabel.safeAreaLayoutGuide.bottomAnchor,

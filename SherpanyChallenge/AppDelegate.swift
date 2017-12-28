@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let splitViewControler = UISplitViewController()
         splitViewControler.viewControllers = [UINavigationController(rootViewController: listPostsViewController),
-                                              postDetailsViewController]
+                                              UINavigationController(rootViewController: postDetailsViewController)]
         splitViewControler.preferredDisplayMode = .allVisible
 
         window.rootViewController = splitViewControler
