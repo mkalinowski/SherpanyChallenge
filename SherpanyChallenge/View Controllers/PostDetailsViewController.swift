@@ -8,7 +8,6 @@
 
 import UIKit
 
-// TODO Scroll body with photos
 class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
     private var post: Post? {
         didSet {
@@ -16,6 +15,12 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
             bodyLabel.text = post?.body
             collectionView.reloadData()
             collectionView.setContentOffset(.zero, animated: false)
+
+            let albums = post?.user?.sortedAlbums ?? []
+            albumsDataSource = AlbumsDataSource(albums: albums)
+            albumsDataSource?.delegate = self
+            collectionView.dataSource = albumsDataSource
+            collectionView.delegate = albumsDataSource
         }
     }
 
@@ -33,15 +38,15 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
                             $0.register(PhotoCell.self)
                             $0.register(AlbumView.self,
                                         forSupplementaryViewOfKind: UICollectionElementKindSectionHeader)
-                            $0.dataSource = self
-                            $0.delegate = self
     }
 
-    private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().with {
-        $0.estimatedItemSize = CGSize(width: 80, height: 80)
+    private let flowLayout: UICollectionViewFlowLayout = StickyHeaderFlowLayout().with {
+        $0.itemSize = CGSize(width: 80, height: 80)
         $0.minimumLineSpacing = 0
         $0.scrollDirection = .vertical
     }
+
+    private var albumsDataSource: AlbumsDataSource?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,61 +73,16 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
     }
 }
 
-extension PostDetailsViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 30) // TODO: Autolayout
-    }
-}
+extension PostDetailsViewController: AlbumsDataSourceDelegate {
+    func albumsDataSource(_ albumsDataSource: AlbumsDataSource, didChange sections: IndexSet) {
+        collectionView.reloadSections(sections)
 
-extension PostDetailsViewController: UICollectionViewDataSource {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return post?.user?.sortedAlbums?.count ?? 0
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               numberOfItemsInSection section: Int) -> Int {
-        let album: Album? = post?.user?.sortedAlbums?[safe: section]
-        return album?.sortedPhotos?.count ?? 0
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        willDisplay cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-        guard let photoCell: PhotoCell = cell as? PhotoCell,
-            let album = post?.user?.sortedAlbums?[safe: indexPath.section],
-            let photo = album.sortedPhotos?[safe: indexPath.item],
-            let thumbnailUrl = photo.thumbnailUrl
+        guard let expandedSection = albumsDataSource.expandedSection,
+            let attributes = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader,
+                                                                                    at: IndexPath(item: 0, section: expandedSection))
             else { return }
-        photoCell.imageView.download(thumbnailUrl)
-    }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        didEndDisplaying cell: UICollectionViewCell,
-                        forItemAt indexPath: IndexPath) {
-        guard let photoCell: PhotoCell = cell as? PhotoCell
-            else { return }
-        photoCell.imageView.cancel()
-    }
-
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
-        let cell: AlbumView =
-            collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                            for: indexPath)
-
-        if let album: Album = post?.user?.sortedAlbums?[safe: indexPath.section] {
-            cell.titleLabel.text = album.title
-        }
-
-        return cell
+        collectionView.setContentOffset(CGPoint(x: 0, y: attributes.frame.origin.y - collectionView.contentInset.top),
+                                        animated: true)
     }
 }

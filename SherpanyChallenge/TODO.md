@@ -19,10 +19,11 @@
 
 ###Bonus points
 
-- [ ] It would be nice to be able to show/hide the photos of an album. All albums are collapsed in the default state.
+- [x] It would be nice to be able to show/hide the photos of an album. All albums are collapsed in the default state.
 - [ ] Because the collection of photos can get quite long, we would like the headers to stick to the top.
 - [ ] Include a search bar to search in the master view and provide live feedback to the user while searching.
 
 - [ ] Logs
 - [ ] Error handling
 - [ ] Hardcode ATS domain
+- [ ] Scroll post body with photos
