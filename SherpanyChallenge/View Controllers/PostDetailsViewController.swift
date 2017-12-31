@@ -37,11 +37,10 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
 
     private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().with {
         $0.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
-        $0.minimumInteritemSpacing = 5
-        $0.minimumLineSpacing = 5
         $0.scrollDirection = .vertical
-        $0.sectionFootersPinToVisibleBounds = true
-        $0.sectionHeadersPinToVisibleBounds = true
+        $0.minimumInteritemSpacing = 0
+        $0.minimumLineSpacing = 0
+        //        $0.sectionHeadersPinToVisibleBounds = true // TODO: Glitches
     }
 
     private var albumsDataSource: AlbumsDataSource?

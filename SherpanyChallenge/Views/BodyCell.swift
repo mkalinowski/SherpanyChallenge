@@ -54,20 +54,20 @@ class BodyCell: AutoLayoutCollectionViewCell {
     }
 
     private func configure() {
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 30, right: 20)
         let stackView = UIStackView(arrangedSubviews: [titleLabel, bodyLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
+        stackView.spacing = 30
         stackView.distribution = .equalSpacing
-        //        $0.isLayoutMarginsRelativeArrangement = true
-        //        $0.spacing = 2
 
         contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
-            contentView.topAnchor.constraint(equalTo: stackView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            contentView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: stackView.rightAnchor)
+            contentView.layoutMarginsGuide.topAnchor.constraint(equalTo: stackView.topAnchor),
+            contentView.layoutMarginsGuide.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+            contentView.readableContentGuide.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+            contentView.readableContentGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor)
             ]
         )
     }

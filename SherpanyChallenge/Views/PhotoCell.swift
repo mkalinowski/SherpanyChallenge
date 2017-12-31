@@ -24,6 +24,7 @@ class PhotoCell: UICollectionViewCell {
     private func configure() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
+        imageView.contentMode = .scaleAspectFill
         contentView.addSubview(imageView)
 
         NSLayoutConstraint.activate([
@@ -31,9 +32,6 @@ class PhotoCell: UICollectionViewCell {
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
-
-        contentView.layer.borderColor = UIColor.black.cgColor
-        contentView.layer.borderWidth = 1
     }
 
     override func prepareForReuse() {

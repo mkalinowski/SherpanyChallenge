@@ -76,8 +76,8 @@ extension AlbumsDataSource: UICollectionViewDataSource {
             let cell: BodyCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
-            cell.bodyLabel.text = body
-            cell.titleLabel.text = title
+            cell.bodyLabel.text = body.capitalized
+            cell.titleLabel.text = title.capitalized
             return cell
         }
 
@@ -97,11 +97,9 @@ extension AlbumsDataSource: UICollectionViewDataSource {
             let count = album.photos?.count
             else { fatalError() }
 
-        var title = album.title
-        title?.append(" (\(count) photo\((count > 1) ? "s" : ""))")
-
         cell.tag = indexPath.section
-        cell.titleLabel.text = title
+        cell.titleLabel.text = album.title?.capitalized
+        cell.subtitleLabel.text = "\(count) photo\((count > 1) ? "s" : "")"
         cell.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                          action: #selector(didTap(_:))))
 
@@ -111,13 +109,21 @@ extension AlbumsDataSource: UICollectionViewDataSource {
 
 extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        if section == 0 {
+            return .zero
+        }
+        return UIEdgeInsets(top: 20.0, left: 0, bottom: 0, right: 0)
+    }
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         if section == 0 {
             return .zero
         }
-        return CGSize(width: collectionView.frame.width, height: 30) // TODO: Autolayout
+        return CGSize(width: collectionView.frame.width, height: 46) // TODO: Autolayout
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -151,14 +157,14 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
             Static.sizingCell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
             Static.sizingCell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
             Static.sizingCell.bodyLabel.text = body
-            Static.sizingCell.titleLabel.text = title
+            Static.sizingCell.titleLabel.text = title.capitalized
 
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame.size.width = collectionView.frame.width
             let newAttributes = Static.sizingCell.preferredLayoutAttributesFitting(attributes)
             return newAttributes.size
         } else {
-            let size = ceil(collectionView.frame.width / 9)
+            let size = floor(collectionView.bounds.size.width / 7.0)
             // TODO: Fit equally
             return CGSize(width: size, height: size)
         }
