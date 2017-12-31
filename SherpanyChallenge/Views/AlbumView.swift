@@ -37,5 +37,8 @@ class AlbumView: UICollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = nil
+        gestureRecognizers?.forEach {
+            removeGestureRecognizer($0)
+        }
     }
 }

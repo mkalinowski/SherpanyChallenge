@@ -92,22 +92,18 @@ extension AlbumsDataSource: UICollectionViewDataSource {
         let cell: AlbumView =
             collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                             for: indexPath)
+        guard indexPath.section > 0,
+            let album: Album = albums[safe: indexPath.section - 1],
+            let count = album.photos?.count
+            else { fatalError() }
 
-        if indexPath.section > 0, let album: Album = albums[safe: indexPath.section + 1] {
+        var title = album.title
+        title?.append(" (\(count) photo\((count > 1) ? "s" : ""))")
 
-            var title = album.title
-
-            if let count = album.photos?.count {
-                title?.append(" (\(count) photos)") // TODO: plural
-            }
-
-            cell.tag = indexPath.section
-            cell.titleLabel.text = title
-
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                              action: #selector(didTap(_:)))
-            cell.addGestureRecognizer(tapGestureRecognizer)
-        }
+        cell.tag = indexPath.section
+        cell.titleLabel.text = title
+        cell.addGestureRecognizer(UITapGestureRecognizer(target: self,
+                                                         action: #selector(didTap(_:))))
 
         return cell
     }
