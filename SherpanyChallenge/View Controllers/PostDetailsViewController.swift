@@ -36,11 +36,12 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
     }
 
     private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().with {
-        $0.minimumLineSpacing = 0
-        $0.scrollDirection = .vertical
+        $0.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
         $0.minimumInteritemSpacing = 5
         $0.minimumLineSpacing = 5
-        $0.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        $0.scrollDirection = .vertical
+        $0.sectionFootersPinToVisibleBounds = true
+        $0.sectionHeadersPinToVisibleBounds = true
     }
 
     private var albumsDataSource: AlbumsDataSource?
@@ -62,7 +63,6 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
 
         view.backgroundColor = .white
         view.addSubview(collectionView)
-
         flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 30)
         additionalSafeAreaInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
