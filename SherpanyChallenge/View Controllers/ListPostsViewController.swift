@@ -36,11 +36,22 @@ class ListPostsViewController: UITableViewController {
         super.viewDidLoad()
         title = "Challenge Accepted!"
 
+        let blurredImageView = BlurredImageView()
+        tableView.backgroundView = blurredImageView
+        tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurredImageView.effect)
+
+        navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.white
+        ]
+
         tableView.register(PostCell.self)
         tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableViewAutomaticDimension
 
         refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .white
 
         if let refreshControl = refreshControl {
             refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
@@ -80,7 +91,7 @@ extension ListPostsViewController {
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PostCell = tableView.dequeueReusableCell(for: indexPath)
         if let post = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = post.title
+            cell.textLabel?.text = post.title?.capitalized
             cell.detailTextLabel?.text = post.user?.email
         }
         return cell

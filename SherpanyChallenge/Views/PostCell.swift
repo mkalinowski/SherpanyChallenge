@@ -19,6 +19,8 @@ class PostCell: UITableViewCell {
     }
 
     private func configure() {
+        contentView.backgroundColor = .clear
+        backgroundColor = .clear
         textLabel?.font = UIFont
             .preferredFont(forTextStyle: .headline)
             .fontDescriptor
@@ -27,16 +29,17 @@ class PostCell: UITableViewCell {
             })
 
         textLabel?.numberOfLines = 0
-        textLabel?.textColor = UIColor(named: "sherpanyBlue")
+        textLabel?.textColor = #colorLiteral(red: 0.8566937447, green: 0.9248988032, blue: 0.9750056863, alpha: 1)
         textLabel?.highlightedTextColor = .white
 
         detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
-        detailTextLabel?.textColor = UIColor(named: "sherpanyBlue")?.withAlphaComponent(0.5)
+        detailTextLabel?.textColor = #colorLiteral(red: 0.8566937447, green: 0.9248988032, blue: 0.9750056863, alpha: 1).withAlphaComponent(0.5)
+        detailTextLabel?.textColor = #colorLiteral(red: 0.8566937447, green: 0.9248988032, blue: 0.9750056863, alpha: 1)
         detailTextLabel?.highlightedTextColor = UIColor.white.withAlphaComponent(0.5)
 
         let bgColorView = UIView()
 
-        bgColorView.backgroundColor = UIColor(named: "sherpanyGreen")
+        bgColorView.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
         selectedBackgroundView = bgColorView
     }
 }

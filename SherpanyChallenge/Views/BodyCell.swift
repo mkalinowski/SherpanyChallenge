@@ -41,6 +41,7 @@ class BodyCell: AutoLayoutCollectionViewCell {
         $0.font = UIFont.preferredFont(forTextStyle: .title3)
         $0.numberOfLines = 0
         $0.setContentCompressionResistancePriority(.required, for: .vertical)
+        $0.textColor = .darkGray
     }
 
     override init(frame: CGRect) {
@@ -54,13 +55,13 @@ class BodyCell: AutoLayoutCollectionViewCell {
     }
 
     private func configure() {
-        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 30, right: 20)
+        contentView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 50, right: 20)
         let stackView = UIStackView(arrangedSubviews: [titleLabel, bodyLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.spacing = 30
         stackView.distribution = .equalSpacing
+        stackView.spacing = 30
 
         contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
