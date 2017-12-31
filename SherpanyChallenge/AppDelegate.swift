@@ -26,7 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let splitViewControler = UISplitViewController()
         splitViewControler.viewControllers = [UINavigationController(rootViewController: listPostsViewController),
-                                              UINavigationController(rootViewController: postDetailsViewController)]
+                                              postDetailsViewController]
+        splitViewControler.minimumPrimaryColumnWidth = 341
+        splitViewControler.maximumPrimaryColumnWidth = 341
         splitViewControler.preferredDisplayMode = .allVisible
 
         window.rootViewController = splitViewControler
