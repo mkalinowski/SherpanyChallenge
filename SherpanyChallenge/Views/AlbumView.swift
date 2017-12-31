@@ -9,9 +9,7 @@
 import UIKit
 
 class AlbumView: UICollectionReusableView {
-    let titleLabel = UILabel().with {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
+    let titleLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,9 +24,14 @@ class AlbumView: UICollectionReusableView {
     private func configure() {
         addSubview(titleLabel)
 
-        NSLayoutConstraint.activate([
-            titleLabel.leftAnchor.constraint(equalTo: leftAnchor),
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)])
+        backgroundColor = UIColor.white
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        titleLabel.sizeToFit()
+        titleLabel.frame.origin = .zero
     }
 
     override func prepareForReuse() {

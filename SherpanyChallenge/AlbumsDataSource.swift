@@ -21,9 +21,13 @@ class AlbumsDataSource: NSObject {
     typealias ConfigureCell = (_ item: UICollectionViewCell, _ indexPath: IndexPath) -> Void // TODO
 
     let albums: [Album]
+    let title: String
+    let body: String
 
-    init?(albums: [Album]) {
+    init(title: String, body: String, albums: [Album]) {
         self.albums = albums
+        self.title = title
+        self.body = body
         super.init()
     }
 
@@ -49,20 +53,34 @@ class AlbumsDataSource: NSObject {
 
 extension AlbumsDataSource: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return albums.count
+        return albums.count + 1
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+
         if expandedSection != section {
             return 0
         }
-        let album: Album? = albums[safe: section]
+        let album: Album? = albums[safe: section - 1]
         return album?.sortedPhotos?.count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        if indexPath.section == 0 {
+            let cell: BodyCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            cell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            cell.bodyLabel.text = body
+            cell.titleLabel.text = title
+            return cell
+        }
+
         let cell: PhotoCell = collectionView.dequeueReusableCell(for: indexPath)
         return cell
     }
@@ -70,11 +88,12 @@ extension AlbumsDataSource: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView,
                                viewForSupplementaryElementOfKind kind: String,
                                at indexPath: IndexPath) -> UICollectionReusableView {
+
         let cell: AlbumView =
             collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                             for: indexPath)
 
-        if let album: Album = albums[safe: indexPath.section] {
+        if indexPath.section > 0, let album: Album = albums[safe: indexPath.section + 1] {
 
             var title = album.title
 
@@ -84,10 +103,11 @@ extension AlbumsDataSource: UICollectionViewDataSource {
 
             cell.tag = indexPath.section
             cell.titleLabel.text = title
-        }
 
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))
-        cell.addGestureRecognizer(tapGestureRecognizer)
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                              action: #selector(didTap(_:)))
+            cell.addGestureRecognizer(tapGestureRecognizer)
+        }
 
         return cell
     }
@@ -98,6 +118,9 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if section == 0 {
+            return .zero
+        }
         return CGSize(width: collectionView.frame.width, height: 30) // TODO: Autolayout
     }
 
@@ -105,7 +128,7 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         guard let photoCell: PhotoCell = cell as? PhotoCell,
-            let album = albums[safe: indexPath.section],
+            let album = albums[safe: indexPath.section - 1],
             let photo = album.sortedPhotos?[safe: indexPath.item],
             let thumbnailUrl = photo.thumbnailUrl
             else { return }
@@ -118,5 +141,30 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
         guard let photoCell: PhotoCell = cell as? PhotoCell
             else { return }
         photoCell.imageView.cancel()
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        struct Static {
+            static var sizingCell = BodyCell(frame: .zero)
+        }
+
+        if indexPath.section == 0 {
+            Static.sizingCell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            Static.sizingCell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            Static.sizingCell.bodyLabel.text = body
+            Static.sizingCell.titleLabel.text = title
+
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame.size.width = collectionView.frame.width
+            let newAttributes = Static.sizingCell.preferredLayoutAttributesFitting(attributes)
+            return newAttributes.size
+        } else {
+            let size = ceil(collectionView.frame.width / 9)
+            // TODO: Fit equally
+            return CGSize(width: size, height: size)
+        }
     }
 }
