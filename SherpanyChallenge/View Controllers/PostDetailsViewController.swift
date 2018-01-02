@@ -12,7 +12,7 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
     private var post: Post? {
         didSet {
 
-            let albums = post?.user?.sortedAlbums ?? []
+            let albums = (post?.user?.albums?.array as? [Album]) ?? []
             albumsDataSource = AlbumsDataSource(title: post?.title ?? "",
                                                 body: post?.body ?? "",
                                                 albums: albums)

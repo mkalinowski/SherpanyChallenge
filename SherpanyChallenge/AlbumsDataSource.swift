@@ -62,7 +62,7 @@ extension AlbumsDataSource: UICollectionViewDataSource {
             return 0
         }
         let album: Album? = albums[safe: section - 1]
-        return album?.sortedPhotos?.count ?? 0
+        return album?.photos?.count ?? 0
     }
 
     public func collectionView(_ collectionView: UICollectionView,
@@ -127,7 +127,7 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
                         forItemAt indexPath: IndexPath) {
         guard let photoCell: PhotoCell = cell as? PhotoCell,
             let album = albums[safe: indexPath.section - 1],
-            let photo = album.sortedPhotos?[safe: indexPath.item],
+            let photo = album.photos?[indexPath.item] as? Photo,
             let thumbnailUrl = photo.thumbnailUrl
             else { return }
         photoCell.imageView.download(thumbnailUrl)

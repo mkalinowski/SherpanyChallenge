@@ -2,8 +2,8 @@
 //  User+CoreDataProperties.swift
 //  SherpanyChallenge
 //
-//  Created by Mikolaj Kalinowski on 12/23/17.
-//  Copyright © 2017 Higher Order. All rights reserved.
+//  Created by Mikolaj Kalinowski on 03/01/2018.
+//  Copyright © 2018 Higher Order. All rights reserved.
 //
 //
 
@@ -18,8 +18,43 @@ extension User {
 
     @NSManaged public var email: String?
     @NSManaged public var id: Int64
+    @NSManaged public var albums: NSOrderedSet?
     @NSManaged public var posts: NSSet?
-    @NSManaged public var albums: NSSet?
+
+}
+
+// MARK: Generated accessors for albums
+extension User {
+
+    @objc(insertObject:inAlbumsAtIndex:)
+    @NSManaged public func insertIntoAlbums(_ value: Album, at idx: Int)
+
+    @objc(removeObjectFromAlbumsAtIndex:)
+    @NSManaged public func removeFromAlbums(at idx: Int)
+
+    @objc(insertAlbums:atIndexes:)
+    @NSManaged public func insertIntoAlbums(_ values: [Album], at indexes: NSIndexSet)
+
+    @objc(removeAlbumsAtIndexes:)
+    @NSManaged public func removeFromAlbums(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInAlbumsAtIndex:withObject:)
+    @NSManaged public func replaceAlbums(at idx: Int, with value: Album)
+
+    @objc(replaceAlbumsAtIndexes:withAlbums:)
+    @NSManaged public func replaceAlbums(at indexes: NSIndexSet, with values: [Album])
+
+    @objc(addAlbumsObject:)
+    @NSManaged public func addToAlbums(_ value: Album)
+
+    @objc(removeAlbumsObject:)
+    @NSManaged public func removeFromAlbums(_ value: Album)
+
+    @objc(addAlbums:)
+    @NSManaged public func addToAlbums(_ values: NSOrderedSet)
+
+    @objc(removeAlbums:)
+    @NSManaged public func removeFromAlbums(_ values: NSOrderedSet)
 
 }
 
@@ -37,22 +72,5 @@ extension User {
 
     @objc(removePosts:)
     @NSManaged public func removeFromPosts(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for albums
-extension User {
-
-    @objc(addAlbumsObject:)
-    @NSManaged public func addToAlbums(_ value: Album)
-
-    @objc(removeAlbumsObject:)
-    @NSManaged public func removeFromAlbums(_ value: Album)
-
-    @objc(addAlbums:)
-    @NSManaged public func addToAlbums(_ values: NSSet)
-
-    @objc(removeAlbums:)
-    @NSManaged public func removeFromAlbums(_ values: NSSet)
 
 }

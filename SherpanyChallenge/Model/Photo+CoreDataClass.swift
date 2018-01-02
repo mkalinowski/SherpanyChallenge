@@ -46,9 +46,3 @@ public class Photo: NSManagedObject, Decodable, Downloadable {
         album = (try context.fetch(fetchRequest)).first
     }
 }
-
-extension Photo: Comparable {
-    public static func < (lhs: Photo, rhs: Photo) -> Bool {
-        return lhs.id < rhs.id
-    }
-}
