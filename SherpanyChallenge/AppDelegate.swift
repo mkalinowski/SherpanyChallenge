@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        application.isNetworkActivityIndicatorVisible = true
         var results: [String: Data] = [:]
         let types: [Downloadable.Type] = [User.self, Post.self, Album.self, Photo.self]
 
@@ -56,6 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         sync.notify(queue: .main) {
+            application.isNetworkActivityIndicatorVisible = false
             guard let users = results[String(describing: User.self)],
                 let posts = results[String(describing: Post.self)],
                 let albums = results[String(describing: Album.self)],
