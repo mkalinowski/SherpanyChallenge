@@ -23,7 +23,20 @@ class ListPostsViewController: UITableViewController {
         $0.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
     }
 
-    private var searchPhrase: String?
+    private var searchPhrase: String? {
+        didSet {
+            if searchPhrase == "" {
+                searchPhrase = nil
+            }
+
+            NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
+            fetchedResultsController?.fetchRequest.predicate = searchPhrase.map {
+                NSPredicate(format: "title CONTAINS[cd] %@", $0)
+            }
+            try? fetchedResultsController?.performFetch()
+            tableView.reloadData()
+        }
+    }
     private lazy var fetchedResultsController: NSFetchedResultsController<Post>? =
         self.persistenceService?.fetchedResultsController()?.with {
             $0.delegate = self
@@ -44,15 +57,13 @@ class ListPostsViewController: UITableViewController {
         super.viewDidLoad()
         title = "Challenge Accepted!"
 
-        definesPresentationContext = true
-
         let blurredImageView = BlurredImageView()
         tableView.backgroundView = blurredImageView
         tableView.estimatedRowHeight = 80
         tableView.register(PostCell.self)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurredImageView.effect)
-        //        searchController.searchResultsUpdater = self // TODO
+        searchController.searchResultsUpdater = self
         tableView.tableHeaderView = searchController.searchBar
 
         if let navigationBar = navigationController?.navigationBar {
@@ -120,7 +131,9 @@ extension ListPostsViewController {
             if let searchPhrase = searchPhrase {
                 title.highlight(phrase: searchPhrase, with: .red)
             }
-            cell.detailTextLabel?.attributedText = title
+
+            cell.textLabel?.attributedText = title
+            cell.detailTextLabel?.text = post.user?.email
         }
         return cell
     }
@@ -141,5 +154,11 @@ extension ListPostsViewController {
         if let post = fetchedResultsController?.object(at: indexPath) {
             listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: post)
         }
+    }
+}
+
+extension ListPostsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        searchPhrase = searchController.searchBar.text
     }
 }

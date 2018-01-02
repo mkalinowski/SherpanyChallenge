@@ -17,6 +17,7 @@ class BlurredImageView: UIView {
 
     private lazy var imageView: UIImageView = UIImageView(image: #imageLiteral(resourceName: "kindle-background-galaxy")).with {
         $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFill
     }
 

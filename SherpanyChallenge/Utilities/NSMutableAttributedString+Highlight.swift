@@ -11,7 +11,8 @@ import Foundation
 extension NSMutableAttributedString {
     func highlight(phrase: String, with color: UIColor) {
         guard let regex = try? NSRegularExpression(pattern: phrase,
-                                                   options: [.ignoreMetacharacters])
+                                                   options: [.caseInsensitive,
+                                                             .ignoreMetacharacters])
             else { return }
 
         regex.enumerateMatches(in: string,
@@ -20,11 +21,9 @@ extension NSMutableAttributedString {
                                 guard let match = match
                                     else { return }
 
-                                let attributedText = NSMutableAttributedString(string: phrase)
-                                attributedText.addAttribute(.foregroundColor,
-                                                            value: color,
-                                                            range: NSRange(location: 0, length: attributedText.length))
-                                replaceCharacters(in: match.range, with: attributedText)
+                                addAttribute(.foregroundColor,
+                                             value: color,
+                                             range: match.range)
         }
     }
 }
