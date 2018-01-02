@@ -164,7 +164,7 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
             let newAttributes = Static.sizingCell.preferredLayoutAttributesFitting(attributes)
             return newAttributes.size
         } else {
-            let size = floor(collectionView.bounds.size.width / 7.0)
+            let size = floor(collectionView.bounds.size.width / 10.0)
             // TODO: Fit equally
             return CGSize(width: size, height: size)
         }
