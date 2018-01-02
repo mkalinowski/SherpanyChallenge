@@ -13,16 +13,12 @@ protocol AlbumsDataSourceDelegate: class {
 }
 
 class AlbumsDataSource: NSObject {
-
     weak var delegate: AlbumsDataSourceDelegate?
-
-    private(set) var expandedSection: Int?
-
-    typealias ConfigureCell = (_ item: UICollectionViewCell, _ indexPath: IndexPath) -> Void // TODO
-
     let albums: [Album]
     let title: String
     let body: String
+
+    private(set) var expandedSection: Int?
 
     init(title: String, body: String, albums: [Album]) {
         self.albums = albums

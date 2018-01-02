@@ -64,9 +64,7 @@ class AlbumView: UICollectionReusableView {
             blurView.topAnchor.constraint(equalTo: topAnchor),
             blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
             blurView.leftAnchor.constraint(equalTo: leftAnchor),
-            blurView.rightAnchor.constraint(equalTo: rightAnchor)
-            ]
-        )
+            blurView.rightAnchor.constraint(equalTo: rightAnchor)])
     }
 
     override func prepareForReuse() {

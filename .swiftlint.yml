@@ -2,6 +2,7 @@ swiftlint_version: 0.24.0
 disabled_rules: 
 - attributes
 - closure_end_indentation
+- nesting
 - number_separator
 - unused_closure_parameter
 - vertical_parameter_alignment

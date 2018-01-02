@@ -68,9 +68,7 @@ class BodyCell: AutoLayoutCollectionViewCell {
             contentView.layoutMarginsGuide.topAnchor.constraint(equalTo: stackView.topAnchor),
             contentView.layoutMarginsGuide.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             contentView.readableContentGuide.leftAnchor.constraint(equalTo: stackView.leftAnchor),
-            contentView.readableContentGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor)
-            ]
-        )
+            contentView.readableContentGuide.rightAnchor.constraint(equalTo: stackView.rightAnchor)])
     }
 
     override func prepareForReuse() {
