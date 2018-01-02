@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B2819BF1FF2FF2B0030CDCC /* UITableViewcontroller+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819BE1FF2FF2B0030CDCC /* UITableViewcontroller+NSFetchedResultsController.swift */; };
+		0B2819BF1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819BE1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift */; };
 		0B2819C11FF319E40030CDCC /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819C01FF319E40030CDCC /* PhotoCell.swift */; };
 		0B2819C31FF329000030CDCC /* AlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819C21FF329000030CDCC /* AlbumView.swift */; };
 		0B2819C51FF32D360030CDCC /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B2819BE1FF2FF2B0030CDCC /* UITableViewcontroller+NSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewcontroller+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
+		0B2819BE1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+NSFetchedResultsController.swift"; sourceTree = "<group>"; };
 		0B2819C01FF319E40030CDCC /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		0B2819C21FF329000030CDCC /* AlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumView.swift; sourceTree = "<group>"; };
 		0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 			children = (
 				D001E3D51FEC887300A7C06F /* Builder.swift */,
 				D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */,
-				0B2819BE1FF2FF2B0030CDCC /* UITableViewcontroller+NSFetchedResultsController.swift */,
+				0B2819BE1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift */,
 				0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */,
 				0B2819CE1FF339EA0030CDCC /* Array+Safe.swift */,
 				0B6F8D881FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift */,
@@ -280,7 +280,7 @@
 				D07004E81FEE176A00D1DE95 /* Album+CoreDataClass.swift in Sources */,
 				D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */,
 				D06747621FF495A2000B4154 /* AlbumsDataSource.swift in Sources */,
-				0B2819BF1FF2FF2B0030CDCC /* UITableViewcontroller+NSFetchedResultsController.swift in Sources */,
+				0B2819BF1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
 				D07004E41FEE176A00D1DE95 /* Post+CoreDataProperties.swift in Sources */,
 				D06747661FF4B9D2000B4154 /* BodyCell.swift in Sources */,

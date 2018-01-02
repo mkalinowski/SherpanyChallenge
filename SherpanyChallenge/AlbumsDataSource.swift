@@ -91,7 +91,7 @@ extension AlbumsDataSource: UICollectionViewDataSource {
         guard indexPath.section > 0,
             let album: Album = albums[safe: indexPath.section - 1],
             let count = album.photos?.count
-            else { fatalError() }
+            else { return cell }
 
         cell.tag = indexPath.section
         cell.titleLabel.text = album.title?.capitalized
