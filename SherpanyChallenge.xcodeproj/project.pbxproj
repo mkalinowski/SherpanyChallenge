@@ -13,6 +13,7 @@
 		0B2819C51FF32D360030CDCC /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */; };
 		0B2819CF1FF339EA0030CDCC /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819CE1FF339EA0030CDCC /* Array+Safe.swift */; };
 		0B2819D11FF33D7A0030CDCC /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2819D01FF33D7A0030CDCC /* RemoteImageView.swift */; };
+		0B6F8D891FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F8D881FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift */; };
 		0B85D4171FF94C7A003AF489 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85D4161FF94C7A003AF489 /* BlurredImageView.swift */; };
 		D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3B21FEC757500A7C06F /* AppDelegate.swift */; };
 		D001E3BA1FEC757500A7C06F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D001E3B91FEC757500A7C06F /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
 		0B2819CE1FF339EA0030CDCC /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
 		0B2819D01FF33D7A0030CDCC /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
+		0B6F8D881FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Highlight.swift"; sourceTree = "<group>"; };
 		0B85D4161FF94C7A003AF489 /* BlurredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		D001E3AF1FEC757500A7C06F /* SherpanyChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SherpanyChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D001E3B21FEC757500A7C06F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				0B2819C41FF32D360030CDCC /* UICollectionView+Register.swift */,
 				0B2819CE1FF339EA0030CDCC /* Array+Safe.swift */,
 				D06747631FF4974A000B4154 /* UICollectionView+NSFetchedResultsController.swift */,
+				0B6F8D881FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				0B85D4171FF94C7A003AF489 /* BlurredImageView.swift in Sources */,
 				D07004DA1FEDFA6500D1DE95 /* Post+CoreDataClass.swift in Sources */,
 				D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */,
+				0B6F8D891FFAEB82001854F4 /* NSMutableAttributedString+Highlight.swift in Sources */,
 				0B2819C51FF32D360030CDCC /* UICollectionView+Register.swift in Sources */,
 				0B2819C11FF319E40030CDCC /* PhotoCell.swift in Sources */,
 				D07004E81FEE176A00D1DE95 /* Album+CoreDataClass.swift in Sources */,

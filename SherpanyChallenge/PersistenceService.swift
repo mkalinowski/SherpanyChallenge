@@ -37,7 +37,8 @@ final class PersistenceService {
         $0.viewContext.automaticallyMergesChangesFromParent = true
     }
 
-    func fetchedResultsController<Entity: NSManagedObject>(sortDescriptor: String = "id") -> NSFetchedResultsController<Entity>? {
+    func fetchedResultsController<Entity: NSManagedObject>(sortDescriptor: String = "id",
+                                                           predicate: NSPredicate? = nil) -> NSFetchedResultsController<Entity>? {
         let context = persistentContainer.viewContext
         guard let entityName = Entity.entity().name
             else { return nil }
@@ -45,6 +46,10 @@ final class PersistenceService {
         let fetchRequest = NSFetchRequest<Entity>(entityName: entityName)
         if Entity.entity().propertiesByName[sortDescriptor] != nil {
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: sortDescriptor, ascending: true)]
+        }
+
+        if let predicate = predicate {
+            fetchRequest.predicate = predicate
         }
 
         let fetchedResultsController =

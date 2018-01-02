@@ -16,6 +16,7 @@ extension Builder {
         return this
     }
 }
+extension CGRect: Builder {}
 extension NSObject: Builder {}
 extension URLComponents: Builder {}
 extension URLRequest: Builder {}
