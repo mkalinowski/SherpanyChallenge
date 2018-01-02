@@ -29,7 +29,7 @@ class ListPostsViewController: UITableViewController {
                 searchPhrase = nil
             }
 
-            NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: nil)
+            NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: fetchedResultsController?.cacheName)
             fetchedResultsController?.fetchRequest.predicate = searchPhrase.map {
                 NSPredicate(format: "title CONTAINS[cd] %@", $0)
             }
@@ -94,10 +94,7 @@ class ListPostsViewController: UITableViewController {
         }
 
         do {
-            tableView.setContentOffset(CGPoint(x: 0, y: -(refreshControl?.frame.size.height ?? 0)),
-                                       animated: true)
             try fetchedResultsController?.performFetch()
-            tableView.refreshControl?.beginRefreshing()
             tableView.reloadData()
         } catch {
             fatalError("Failed to fetch entities: \(error)")

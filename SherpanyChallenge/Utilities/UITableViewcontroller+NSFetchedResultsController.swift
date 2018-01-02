@@ -11,6 +11,7 @@ import UIKit
 
 extension UITableViewController: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.refreshControl?.beginRefreshing()
         tableView.beginUpdates()
     }
 

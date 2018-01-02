@@ -56,7 +56,7 @@ final class PersistenceService {
             NSFetchedResultsController(fetchRequest: fetchRequest,
                                        managedObjectContext: context,
                                        sectionNameKeyPath: nil,
-                                       cacheName: nil)
+                                       cacheName: String(describing: PersistenceService.self))
         return fetchedResultsController
     }
 

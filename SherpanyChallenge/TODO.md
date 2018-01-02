@@ -28,3 +28,4 @@
 - [ ] Hardcode ATS domain
 - [ ] Scroll post body with photos
 - [ ] Autolayout warnings
+- [ ] Empty post screen
