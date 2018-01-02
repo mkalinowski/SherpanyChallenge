@@ -29,7 +29,6 @@ class ListPostsViewController: UITableViewController {
                 searchPhrase = nil
             }
 
-            NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: fetchedResultsController?.cacheName)
             fetchedResultsController?.fetchRequest.predicate = searchPhrase.map {
                 NSPredicate(format: "title CONTAINS[cd] %@", $0)
             }

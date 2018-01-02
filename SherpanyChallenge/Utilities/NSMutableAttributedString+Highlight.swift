@@ -6,7 +6,7 @@
 //  Copyright © 2018 Higher Order. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSMutableAttributedString {
     func highlight(phrase: String, with color: UIColor) {

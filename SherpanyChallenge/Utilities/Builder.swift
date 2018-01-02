@@ -6,7 +6,7 @@
 //  Copyright © 2017 Higher Order. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol Builder {}
 extension Builder {
