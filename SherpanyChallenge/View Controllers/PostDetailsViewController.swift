@@ -36,7 +36,7 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
     }
 
     private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().with {
-        $0.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+        $0.estimatedItemSize = CGSize(width: 100, height: 100)
         $0.scrollDirection = .vertical
         $0.minimumInteritemSpacing = 0
         $0.minimumLineSpacing = 0

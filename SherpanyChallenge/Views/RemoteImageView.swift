@@ -12,11 +12,7 @@ class RemoteImageView: UIImageView {
     static let imageCache = NSCache<NSString, UIImage>()
     private var downloadTask: URLSessionDataTask?
 
-    private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray).with {
-        $0.frame = self.frame
-        $0.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        $0.startAnimating()
-    }
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     override var image: UIImage? {
         didSet {
@@ -36,6 +32,11 @@ class RemoteImageView: UIImageView {
 
     private func configure() {
         addSubview(activityIndicator)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        activityIndicator.center = center
     }
 
     func download(_ url: URL) {

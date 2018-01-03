@@ -22,16 +22,14 @@ class PhotoCell: UICollectionViewCell {
     }
 
     private func configure() {
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-
         imageView.contentMode = .scaleAspectFill
+        contentView.clipsToBounds = true
         contentView.addSubview(imageView)
+    }
 
-        NSLayoutConstraint.activate([
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        imageView.frame = contentView.bounds
     }
 
     override func prepareForReuse() {
