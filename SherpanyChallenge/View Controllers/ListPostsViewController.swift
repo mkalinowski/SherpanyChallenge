@@ -21,6 +21,7 @@ class ListPostsViewController: UITableViewController {
         $0.searchBar.placeholder = "Search Posts"
         $0.searchBar.searchBarStyle = .minimal
         $0.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        $0.searchResultsUpdater = self
     }
 
     private var searchPhrase: String? {
@@ -52,45 +53,54 @@ class ListPostsViewController: UITableViewController {
         super.init(coder: aDecoder)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Challenge Accepted!"
-
+    private func setupTableView() {
         let blurredImageView = BlurredImageView()
         tableView.backgroundView = blurredImageView
         tableView.estimatedRowHeight = 80
         tableView.register(PostCell.self)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurredImageView.effect)
-        searchController.searchResultsUpdater = self
         tableView.tableHeaderView = searchController.searchBar
+    }
 
-        if let navigationBar = navigationController?.navigationBar {
-            navigationBar.backgroundColor = .white
-            navigationBar.isTranslucent = true
-            navigationBar.shadowImage = UIImage()
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationBar.tintColor = UIColor.white
-            navigationBar.titleTextAttributes = [
-                .foregroundColor: UIColor.black
-            ]
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationBar.addSubview(UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
-                $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-                $0.frame = navigationBar.bounds.with {
-                    $0.size.height += 20
-                    $0.origin.y -= 20
-                }
-                $0.layer.zPosition = -1
-            })
-        }
+    private func setupNavigationBar() {
+        guard let navigationBar = navigationController?.navigationBar
+            else { return }
+        navigationBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        navigationBar.isTranslucent = true
+        navigationBar.shadowImage = UIImage()
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.tintColor = .white
+        navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.black
+        ]
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.addSubview(UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
+            $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+            $0.frame = navigationBar.bounds.with {
+                $0.size.height += 20
+                $0.origin.y -= 20
+            }
+            $0.layer.zPosition = -1 // Move effect below title
+        })
+    }
 
+    private func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .white
 
         if let refreshControl = refreshControl {
             refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Challenge Accepted!"
+
+        setupTableView()
+        setupNavigationBar()
+        setupRefreshControl()
 
         do {
             try fetchedResultsController?.performFetch()
