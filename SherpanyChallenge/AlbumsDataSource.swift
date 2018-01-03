@@ -17,6 +17,7 @@ class AlbumsDataSource: NSObject {
     let albums: [Album]
     let title: String
     let body: String
+    let columns: Int = 10
 
     private(set) var expandedSection: Int?
 
@@ -144,7 +145,6 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         struct Static {
             static var sizingCell = BodyCell(frame: .zero)
         }
@@ -160,9 +160,20 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
             let newAttributes = Static.sizingCell.preferredLayoutAttributesFitting(attributes)
             return newAttributes.size
         } else {
-            let size = floor(collectionView.bounds.size.width / 10.0)
-            // TODO: Fit equally
-            return CGSize(width: size, height: size)
+            // Cells evenly fill the whole collection view width
+            let cellSize = floor(collectionView.bounds.size.width / CGFloat(columns))
+            let alignment = collectionView.bounds.size.width - CGFloat(columns) * cellSize
+            let alignColumns = Int(ceil(alignment))
+
+            var cellAlignment: CGFloat = 0
+            let column = (indexPath.row % columns)
+            if column < alignColumns - 1 {
+                cellAlignment = 1
+            } else if column == alignColumns - 1 {
+                cellAlignment = CGFloat(alignColumns) - alignment
+            }
+
+            return CGSize(width: cellSize + cellAlignment, height: cellSize)
         }
     }
 }

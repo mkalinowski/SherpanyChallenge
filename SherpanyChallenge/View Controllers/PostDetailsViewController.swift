@@ -40,7 +40,7 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
         $0.scrollDirection = .vertical
         $0.minimumInteritemSpacing = 0
         $0.minimumLineSpacing = 0
-        //        $0.sectionHeadersPinToVisibleBounds = true // TODO: Glitches
+        $0.sectionHeadersPinToVisibleBounds = true
     }
 
     private var albumsDataSource: AlbumsDataSource?
