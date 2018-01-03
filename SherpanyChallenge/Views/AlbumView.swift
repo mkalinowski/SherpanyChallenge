@@ -9,6 +9,10 @@
 import UIKit
 
 class AlbumView: UICollectionReusableView {
+    override class var layerClass: AnyClass {
+        return DefaultZPositionLayer.self
+    }
+
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
     let imageView = UIImageView(image: #imageLiteral(resourceName: "chevron"))
@@ -59,7 +63,7 @@ class AlbumView: UICollectionReusableView {
 
             imageView.bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: blurView.topAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 20),
+            imageView.widthAnchor.constraint(equalToConstant: 40),
             imageView.rightAnchor.constraint(equalTo: blurView.rightAnchor),
             blurView.topAnchor.constraint(equalTo: topAnchor),
             blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
