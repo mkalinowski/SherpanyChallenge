@@ -40,6 +40,7 @@ class RemoteImageView: UIImageView {
     }
 
     func download(_ url: URL) {
+        downloadTask?.cancel()
         if let image = RemoteImageView.imageCache.object(forKey: url.absoluteString as NSString) {
             self.image = image
             return
@@ -50,23 +51,25 @@ class RemoteImageView: UIImageView {
         }
 
         activityIndicator.startAnimating()
-        downloadTask?.cancel()
         downloadTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let data = data,
                 let image = UIImage(data: data)
                 else { return }
 
+            assert(self?.downloadTask?.state != .canceling)
             DispatchQueue.main.async {
+                assert(response?.url == url)
                 self?.image = image
                 self?.downloadTask = nil
+                RemoteImageView.imageCache.setObject(image, forKey: url.absoluteString as NSString)
             }
-            RemoteImageView.imageCache.setObject(image, forKey: url.absoluteString as NSString)
         }
 
         downloadTask?.resume()
     }
 
     func cancel() {
+        image = nil
         downloadTask?.cancel()
         activityIndicator.stopAnimating()
     }
