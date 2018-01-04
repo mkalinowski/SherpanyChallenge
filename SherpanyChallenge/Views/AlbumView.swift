@@ -10,12 +10,11 @@ import UIKit
 
 class AlbumView: UICollectionReusableView {
     override class var layerClass: AnyClass {
-        return DefaultZPositionLayer.self
+        return DefaultZPositionLayer.self // Move the view below scroll indicator
     }
 
     let titleLabel = UILabel()
     let subtitleLabel = UILabel()
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "chevron"))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,43 +36,41 @@ class AlbumView: UICollectionReusableView {
 
         subtitleLabel.textColor = UIColor.gray
 
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light)).with {
+            $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            $0.frame = bounds
+        }
 
-        let darkBlur = UIBlurEffect(style: .light)
-        let blurView = UIVisualEffectView(effect: darkBlur)
         addSubview(blurView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .center
+
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel]).with {
+            $0.axis = .vertical
+            $0.distribution = .fillEqually
+            $0.isLayoutMarginsRelativeArrangement = true
+            $0.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+            $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            $0.frame = blurView.bounds
+
+        }
+
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "chevron")).with {
+            $0.contentMode = .center
+            $0.autoresizingMask = [.flexibleHeight, .flexibleLeftMargin]
+            $0.frame = CGRect.zero.with {
+                $0.size.width = 40
+                $0.origin.x = blurView.bounds.width - 40
+                $0.size.height = blurView.bounds.height
+            }
+        }
 
         blurView.contentView.addSubview(stackView)
         blurView.contentView.addSubview(imageView)
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: blurView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
-            stackView.leftAnchor.constraint(equalTo: blurView.leftAnchor),
-            stackView.rightAnchor.constraint(equalTo: imageView.leftAnchor),
-
-            imageView.bottomAnchor.constraint(equalTo: blurView.bottomAnchor),
-            imageView.topAnchor.constraint(equalTo: blurView.topAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 40),
-            imageView.rightAnchor.constraint(equalTo: blurView.rightAnchor),
-            blurView.topAnchor.constraint(equalTo: topAnchor),
-            blurView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            blurView.leftAnchor.constraint(equalTo: leftAnchor),
-            blurView.rightAnchor.constraint(equalTo: rightAnchor)])
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         titleLabel.text = nil
+        subtitleLabel.text = nil
         gestureRecognizers?.forEach {
             removeGestureRecognizer($0)
         }

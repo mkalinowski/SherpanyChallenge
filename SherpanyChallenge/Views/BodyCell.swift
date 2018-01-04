@@ -59,7 +59,6 @@ class BodyCell: AutoLayoutCollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, bodyLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.alignment = .fill
         stackView.distribution = .equalSpacing
         stackView.spacing = 30
 

@@ -106,12 +106,14 @@ extension AlbumsDataSource: UICollectionViewDataSource {
 
 extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
 
         if section == 0 {
             return .zero
         }
-        return UIEdgeInsets(top: 20.0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 10.0, left: 0, bottom: 10, right: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -120,7 +122,8 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
         if section == 0 {
             return .zero
         }
-        return CGSize(width: collectionView.frame.width, height: 46) // TODO: Autolayout
+
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
 
     func collectionView(_ collectionView: UICollectionView,

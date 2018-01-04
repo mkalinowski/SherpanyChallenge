@@ -62,7 +62,6 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
 
         view.backgroundColor = .white
         view.addSubview(collectionView)
-        flowLayout.headerReferenceSize = CGSize(width: collectionView.frame.width, height: 30)
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
