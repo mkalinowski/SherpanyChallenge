@@ -26,6 +26,7 @@
 - [ ] Logs
 - [ ] Error handling
 - [ ] Hardcode ATS domain
-- [ ] Scroll post body with photos
+- [x] Scroll post body with photos
 - [ ] Autolayout warnings
 - [ ] Empty post screen
+- [ ] Refresh doesn't finish

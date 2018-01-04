@@ -16,6 +16,7 @@ protocol ListPostsViewControllerDelegate: NSObjectProtocol {
 class ListPostsViewController: UITableViewController {
     weak var listPostsViewControllerDelegate: ListPostsViewControllerDelegate?
     lazy var searchController: UISearchController = UISearchController(searchResultsController: nil).with {
+        $0.dimsBackgroundDuringPresentation = false
         $0.hidesNavigationBarDuringPresentation = false
         $0.searchBar.barStyle = .black
         $0.searchBar.placeholder = "Search Posts"
@@ -69,7 +70,6 @@ class ListPostsViewController: UITableViewController {
         navigationBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
         navigationBar.isTranslucent = true
         navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.tintColor = .white
         navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.black
@@ -81,6 +81,16 @@ class ListPostsViewController: UITableViewController {
                 $0.size.height += 20
                 $0.origin.y -= 20
             }
+            $0.layer.zPosition = -1 // Move effect below title
+        })
+
+        searchController.searchBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        searchController.searchBar.isTranslucent = true
+        searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: UIBarMetrics.default)
+        searchController.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        searchController.searchBar.addSubview(UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
+            $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+            $0.frame = searchController.searchBar.bounds
             $0.layer.zPosition = -1 // Move effect below title
         })
     }

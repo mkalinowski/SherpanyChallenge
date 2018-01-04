@@ -17,7 +17,7 @@ class AlbumsDataSource: NSObject {
     let albums: [Album]
     let title: String
     let body: String
-    let columns: Int = 10
+    let columns: Int = 5
 
     private(set) var expandedSection: Int?
 
