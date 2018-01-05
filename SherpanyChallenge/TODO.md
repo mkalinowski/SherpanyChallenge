@@ -28,5 +28,5 @@
 - [ ] Hardcode ATS domain
 - [x] Scroll post body with photos
 - [ ] Autolayout warnings
-- [ ] Empty post screen
+- [x] Empty post screen
 - [ ] Refresh doesn't finish

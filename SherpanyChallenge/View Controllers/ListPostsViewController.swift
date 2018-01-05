@@ -25,6 +25,8 @@ class ListPostsViewController: UITableViewController {
         $0.searchResultsUpdater = self
     }
 
+    private var indexPathForSelectedPost: IndexPath?
+
     private var searchPhrase: String? {
         didSet {
             if searchPhrase == "" {

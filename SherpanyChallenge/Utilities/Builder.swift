@@ -17,6 +17,7 @@ extension Builder {
     }
 }
 extension CGRect: Builder {}
+extension UIEdgeInsets: Builder {}
 extension NSObject: Builder {}
 extension URLComponents: Builder {}
 extension URLRequest: Builder {}
