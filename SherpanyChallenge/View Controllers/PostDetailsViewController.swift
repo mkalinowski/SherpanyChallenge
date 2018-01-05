@@ -78,7 +78,7 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
 
-    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post) {
+    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post?) {
         self.post = post
     }
 }

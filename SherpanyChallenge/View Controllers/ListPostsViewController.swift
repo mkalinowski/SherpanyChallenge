@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 protocol ListPostsViewControllerDelegate: NSObjectProtocol {
-    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post)
+    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post?)
 }
 
 class ListPostsViewController: UITableViewController {
@@ -64,6 +64,10 @@ class ListPostsViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurredImageView.effect)
         tableView.tableHeaderView = searchController.searchBar
+        tableView.scrollIndicatorInsets = UIEdgeInsets.zero.with {
+            $0.top = searchController.searchBar.frame.height
+        }
+        tableView.indicatorStyle = .white
     }
 
     private func setupNavigationBar() {
@@ -163,6 +167,9 @@ extension ListPostsViewController {
                 else { return }
 
             strongSelf.persistenceService?.deleteObject(with: postObjectID)
+            if strongSelf.indexPathForSelectedPost == indexPath {
+                strongSelf.listPostsViewControllerDelegate?.listPostsViewController(strongSelf, didSelect: nil)
+            }
         }
 
         return [delete]
@@ -170,6 +177,7 @@ extension ListPostsViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let post = fetchedResultsController?.object(at: indexPath) {
+            indexPathForSelectedPost = indexPath
             listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: post)
         }
     }
