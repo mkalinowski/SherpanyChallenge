@@ -25,8 +25,6 @@ class ListPostsViewController: UITableViewController {
         $0.searchResultsUpdater = self
     }
 
-    private var indexPathForSelectedPost: IndexPath?
-
     private var searchPhrase: String? {
         didSet {
             if searchPhrase == "" {
@@ -161,15 +159,14 @@ extension ListPostsViewController {
     }
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: nil)
+
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in
             guard let strongSelf = self,
                 let postObjectID = strongSelf.fetchedResultsController?.object(at: indexPath).objectID
                 else { return }
 
             strongSelf.persistenceService?.deleteObject(with: postObjectID)
-            if strongSelf.indexPathForSelectedPost == indexPath {
-                strongSelf.listPostsViewControllerDelegate?.listPostsViewController(strongSelf, didSelect: nil)
-            }
         }
 
         return [delete]
@@ -177,7 +174,6 @@ extension ListPostsViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let post = fetchedResultsController?.object(at: indexPath) {
-            indexPathForSelectedPost = indexPath
             listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: post)
         }
     }

@@ -10,14 +10,35 @@ import CoreData
 import UIKit
 
 extension UITableViewController: NSFetchedResultsControllerDelegate {
+    private enum AssociatedKeys {
+        static var selectedCell = "selectedCell"
+    }
+
+    private var selectedIndexPath: IndexPath? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.selectedCell) as? IndexPath
+        }
+        set {
+            objc_setAssociatedObject(self,
+                                     &AssociatedKeys.selectedCell,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.refreshControl?.beginRefreshing()
+        selectedIndexPath = tableView.indexPathForSelectedRow
         tableView.beginUpdates()
     }
 
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
         tableView.refreshControl?.endRefreshing()
+
+        if let selectedIndexPath = selectedIndexPath {
+            tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
+        }
     }
 
     public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -44,10 +65,28 @@ extension UITableViewController: NSFetchedResultsControllerDelegate {
         case .insert:
             guard let newIndexPath = newIndexPath
                 else { break }
+
+            if let oldSelectedIndexPath = selectedIndexPath,
+                newIndexPath.section == oldSelectedIndexPath.section,
+                newIndexPath <= oldSelectedIndexPath {
+
+                selectedIndexPath?.row = oldSelectedIndexPath.row + 1
+            }
+
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         case .delete:
             guard let indexPath = indexPath
                 else { break }
+
+            if indexPath == selectedIndexPath {
+                selectedIndexPath = nil
+            } else if let oldSelectedIndexPath = selectedIndexPath,
+                indexPath.section == oldSelectedIndexPath.section,
+                indexPath < oldSelectedIndexPath {
+
+                selectedIndexPath?.row = oldSelectedIndexPath.row - 1
+            }
+
             tableView.deleteRows(at: [indexPath], with: .automatic)
         case .update:
             guard let indexPath = indexPath
@@ -57,6 +96,10 @@ extension UITableViewController: NSFetchedResultsControllerDelegate {
             guard let indexPath = indexPath,
                 let newIndexPath = newIndexPath
                 else { break }
+
+            if indexPath == selectedIndexPath {
+                selectedIndexPath = newIndexPath
+            }
             tableView.reloadRows(at: [indexPath, newIndexPath], with: .automatic)
         }
     }
