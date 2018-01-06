@@ -55,7 +55,7 @@ class PostDetailsViewController: UIViewController, ListPostsViewControllerDelega
 
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { context in
+        coordinator.animate(alongsideTransition: { _ in
             self.collectionView.collectionViewLayout.invalidateLayout()
         })
     }

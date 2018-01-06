@@ -50,7 +50,6 @@ class AlbumView: UICollectionReusableView {
             $0.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
             $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             $0.frame = blurView.bounds
-
         }
 
         let imageView = UIImageView(image: #imageLiteral(resourceName: "chevron")).with {

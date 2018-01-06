@@ -56,6 +56,10 @@ class RemoteImageView: UIImageView {
                 let image = UIImage(data: data)
                 else { return }
 
+            if let error = error {
+                log(error.localizedDescription, type: .fault)
+            }
+
             assert(self?.downloadTask?.state != .canceling)
             DispatchQueue.main.async {
                 assert(response?.url == url)
