@@ -24,9 +24,10 @@
 - [x] Include a search bar to search in the master view and provide live feedback to the user while searching.
 
 - [x] Logs
-- [ ] Error handling
-- [ ] Hardcode ATS domain
+- [x] Error handling
+- [x] Hardcode ATS domain
 - [x] Scroll post body with photos
 - [ ] Autolayout warnings
 - [x] Empty post screen
 - [ ] Refresh doesn't finish
+- [ ] Profile allocations

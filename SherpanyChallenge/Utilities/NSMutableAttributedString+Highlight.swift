@@ -17,7 +17,7 @@ extension NSMutableAttributedString {
 
         regex.enumerateMatches(in: string,
                                options: [],
-                               range: NSRange(location: 0, length: length)) { (match, flags, _) in
+                               range: NSRange(location: 0, length: length)) { (match, _, _) in
                                 guard let match = match
                                     else { return }
 

@@ -20,27 +20,26 @@ extension CodingUserInfoKey {
 }
 
 final class PersistenceService {
-    var errorHandler: (Error) -> Void = {
-        log($0.localizedDescription, type: .error)
-    }
+    lazy var persistentContainer: NSPersistentContainer =
+        NSPersistentContainer(name: "Model").with {
+            let group = DispatchGroup()
+            group.enter()
 
-    lazy var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Model").with {
-        let group = DispatchGroup()
-        group.enter()
-
-        $0.loadPersistentStores { [weak self] storeDescription, error in
-            if let error = error {
-                self?.errorHandler(error)
+            $0.loadPersistentStores { [weak self] _, error in
+                if let error = error {
+                    log(error.localizedDescription, type: .error)
+                }
+                group.leave()
             }
-            group.leave()
-        }
-        group.wait()
+            group.wait()
 
-        $0.viewContext.automaticallyMergesChangesFromParent = true
+            $0.viewContext.automaticallyMergesChangesFromParent = true
     }
 
-    func fetchedResultsController<Entity: NSManagedObject>(sortDescriptor: String = "id",
-                                                           predicate: NSPredicate? = nil) -> NSFetchedResultsController<Entity>? {
+    func fetchedResultsController<Entity: NSManagedObject>(
+        sortDescriptor: String = "id",
+        predicate: NSPredicate? = nil) -> NSFetchedResultsController<Entity>? {
+
         let context = persistentContainer.viewContext
         guard let entityName = Entity.entity().name
             else { return nil }

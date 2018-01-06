@@ -88,11 +88,12 @@ extension PostDetailsViewController: AlbumsDataSourceDelegate {
         collectionView.reloadSections(sections)
 
         guard let expandedSection = albumsDataSource.expandedSection,
-            let attributes = collectionView.layoutAttributesForSupplementaryElement(ofKind: UICollectionElementKindSectionHeader,
-                                                                                    at: IndexPath(item: 0, section: expandedSection))
+            let attributes = collectionView.layoutAttributesForSupplementaryElement(
+                ofKind: UICollectionElementKindSectionHeader,
+                at: IndexPath(item: 0, section: expandedSection))
             else { return }
 
-        collectionView.setContentOffset(CGPoint(x: 0, y: attributes.frame.origin.y - collectionView.contentInset.top),
-                                        animated: true)
+        let section = CGPoint(x: 0, y: attributes.frame.origin.y - collectionView.contentInset.top)
+        collectionView.setContentOffset(section, animated: true)
     }
 }

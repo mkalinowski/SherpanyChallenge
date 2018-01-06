@@ -21,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             else { return false }
 
         let postDetailsViewController = PostDetailsViewController()
-        let listPostsViewController = ListPostsViewController(persistenceService: persistenceService)
+        let listPostsViewController =
+            ListPostsViewController(persistenceService: persistenceService)
         listPostsViewController.listPostsViewControllerDelegate = postDetailsViewController
 
         let splitViewControler = UISplitViewController()
-        splitViewControler.viewControllers = [UINavigationController(rootViewController: listPostsViewController),
-                                              postDetailsViewController]
+        splitViewControler.viewControllers =
+            [UINavigationController(rootViewController: listPostsViewController),
+             postDetailsViewController]
         splitViewControler.minimumPrimaryColumnWidth = 342
         splitViewControler.maximumPrimaryColumnWidth = 342
         splitViewControler.preferredDisplayMode = .allVisible
@@ -66,7 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     log("Some data not downloaded", type: .error)
                     return
             }
-            self.persistenceService.upsert(users: users, posts: posts, albums: albums, photos: photos)
+            self.persistenceService.upsert(users: users,
+                                           posts: posts,
+                                           albums: albums,
+                                           photos: photos)
         }
     }
 }

@@ -1,12 +1,6 @@
 swiftlint_version: 0.24.0
 disabled_rules: 
-- attributes
-- closure_end_indentation
 - nesting
-- number_separator
-- unused_closure_parameter
-- vertical_parameter_alignment
-- shorthand_operator
 - identifier_name
 opt_in_rules:
 - closure_parameter_position
@@ -34,11 +28,10 @@ opt_in_rules:
 - strict_fileprivate
 - switch_case_on_newline
 - unneeded_parentheses_in_closure_argument
-excluded: 
-- Pods
+excluded:
 - SherpanyChallenge/Resources
 - Playground.playground
-force_cast: warning # implicitly
+force_cast: warning
 function_body_length:
   warning: 100
   error: 250
@@ -49,7 +42,7 @@ file_length:
 - 500
 - 1200
 line_length:
-- 200
-- 300
+- 120
+- 160
 cyclomatic_complexity:
-        ignores_case_statements: true
+  ignores_case_statements: true

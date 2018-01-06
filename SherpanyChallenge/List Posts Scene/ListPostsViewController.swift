@@ -15,14 +15,15 @@ protocol ListPostsViewControllerDelegate: NSObjectProtocol {
 
 class ListPostsViewController: UITableViewController {
     weak var listPostsViewControllerDelegate: ListPostsViewControllerDelegate?
-    lazy var searchController: UISearchController = UISearchController(searchResultsController: nil).with {
-        $0.dimsBackgroundDuringPresentation = false
-        $0.hidesNavigationBarDuringPresentation = false
-        $0.searchBar.barStyle = .black
-        $0.searchBar.placeholder = "Search Posts"
-        $0.searchBar.searchBarStyle = .minimal
-        $0.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
-        $0.searchResultsUpdater = self
+    lazy var searchController: UISearchController =
+        UISearchController(searchResultsController: nil).with {
+            $0.dimsBackgroundDuringPresentation = false
+            $0.hidesNavigationBarDuringPresentation = false
+            $0.searchBar.barStyle = .black
+            $0.searchBar.placeholder = "Search Posts"
+            $0.searchBar.searchBarStyle = .minimal
+            $0.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+            $0.searchResultsUpdater = self
     }
 
     private var searchPhrase: String? {
@@ -90,13 +91,15 @@ class ListPostsViewController: UITableViewController {
 
         searchController.searchBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
         searchController.searchBar.isTranslucent = true
-        searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: UIBarMetrics.default)
+        searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchController.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
-        searchController.searchBar.addSubview(UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
-            $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
-            $0.frame = searchController.searchBar.bounds
-            $0.layer.zPosition = -1 // Move effect below title
-        })
+        searchController.searchBar.addSubview(
+            UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
+                $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+                $0.frame = searchController.searchBar.bounds
+                $0.layer.zPosition = -1 // Move effect below title
+            }
+        )
     }
 
     private func setupRefreshControl() {
@@ -158,7 +161,9 @@ extension ListPostsViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView,
+                            editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+
         listPostsViewControllerDelegate?.listPostsViewController(self, didSelect: nil)
 
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [weak self] _, indexPath in

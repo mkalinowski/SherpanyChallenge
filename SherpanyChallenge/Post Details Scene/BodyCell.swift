@@ -11,17 +11,24 @@ import UIKit
 open class AutoLayoutCollectionViewCell: UICollectionViewCell {
     override open func preferredLayoutAttributesFitting(
         _ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        layoutAttributes.bounds.size.height = systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        layoutAttributes.bounds.size.height =
+            systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         return layoutAttributes
     }
 }
 
 class BodyCell: AutoLayoutCollectionViewCell {
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    override func preferredLayoutAttributesFitting(
+        _ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+
         let autoLayoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
         let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-        let autoLayoutSize = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow)
-        let autoLayoutFrame = CGRect(origin: autoLayoutAttributes.frame.origin, size: autoLayoutSize)
+        let autoLayoutSize =
+            contentView.systemLayoutSizeFitting(targetSize,
+                                                withHorizontalFittingPriority: .required,
+                                                verticalFittingPriority: .defaultLow)
+        let autoLayoutFrame = CGRect(origin: autoLayoutAttributes.frame.origin,
+                                     size: autoLayoutSize)
         autoLayoutAttributes.frame = autoLayoutFrame
         return autoLayoutAttributes
     }
