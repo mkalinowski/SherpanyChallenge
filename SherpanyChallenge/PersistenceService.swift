@@ -20,7 +20,9 @@ extension CodingUserInfoKey {
 }
 
 final class PersistenceService {
-    var errorHandler: (Error) -> Void = { NSLog("CoreData error \($0)") }
+    var errorHandler: (Error) -> Void = {
+        log($0.localizedDescription, type: .error)
+    }
 
     lazy var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Model").with {
         let group = DispatchGroup()
@@ -76,14 +78,14 @@ final class PersistenceService {
                 let importedAlbums = try decoder.decode([Album].self, from: albums)
                 let importedPhotos = try decoder.decode([Photo].self, from: photos)
 
-                NSLog("Imported users: \(importedUsers.count)")
-                NSLog("Imported posts: \(importedPosts.count)")
-                NSLog("Imported albums: \(importedAlbums.count)")
-                NSLog("Imported photos: \(importedPhotos.count)")
+                log("Imported users: \(importedUsers.count)", type: .info)
+                log("Imported posts: \(importedPosts.count)", type: .info)
+                log("Imported albums: \(importedAlbums.count)", type: .info)
+                log("Imported photos: \(importedPhotos.count)", type: .info)
 
                 try context.save()
             } catch {
-                NSLog("Error: \(error)")
+                log(error.localizedDescription, type: .error)
             }
         }
     }
@@ -94,7 +96,7 @@ final class PersistenceService {
             do {
                 try context.save()
             } catch {
-                NSLog("\(error)")
+                log(error.localizedDescription, type: .error)
             }
         }
     }

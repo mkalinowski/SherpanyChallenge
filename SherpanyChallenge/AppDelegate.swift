@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let data = try data()
                     results[String(describing: type)] = data
                 } catch {
-                    NSLog("Error: \(error)")
+                    log(error.localizedDescription, type: .error)
                 }
                 sync.leave()
             }
@@ -63,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let albums = results[String(describing: Album.self)],
                 let photos = results[String(describing: Photo.self)]
                 else {
-                    NSLog("Error: No data downloaded")
+                    log("Some data not downloaded", type: .error)
                     return
             }
             self.persistenceService.upsert(users: users, posts: posts, albums: albums, photos: photos)

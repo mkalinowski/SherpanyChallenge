@@ -120,7 +120,7 @@ class ListPostsViewController: UITableViewController {
             try fetchedResultsController?.performFetch()
             tableView.reloadData()
         } catch {
-            fatalError("Failed to fetch entities: \(error)")
+            log(error.localizedDescription, type: .error)
         }
     }
 
@@ -129,7 +129,7 @@ class ListPostsViewController: UITableViewController {
             try fetchedResultsController?.performFetch()
             tableView.refreshControl?.beginRefreshing()
         } catch {
-            fatalError("Failed to fetch entities: \(error)")
+            log(error.localizedDescription, type: .error)
         }
     }
 }
