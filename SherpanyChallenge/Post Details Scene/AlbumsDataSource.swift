@@ -20,6 +20,7 @@ class AlbumsDataSource: NSObject {
     let columns: Int = 5
 
     private(set) var expandedSection: Int?
+    private let sizingCell = BodyCell(frame: .zero)
 
     init(title: String, body: String, albums: [Album]) {
         self.albums = albums
@@ -105,7 +106,6 @@ extension AlbumsDataSource: UICollectionViewDataSource {
 }
 
 extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -113,7 +113,7 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
         if section == 0 {
             return .zero
         }
-        return UIEdgeInsets(top: 10.0, left: 0, bottom: 10, right: 0)
+        return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -148,19 +148,15 @@ extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        struct Static {
-            static var sizingCell = BodyCell(frame: .zero)
-        }
-
         if indexPath.section == 0 {
-            Static.sizingCell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
-            Static.sizingCell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
-            Static.sizingCell.bodyLabel.text = body
-            Static.sizingCell.titleLabel.text = title.capitalized
+            sizingCell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            sizingCell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
+            sizingCell.bodyLabel.text = body
+            sizingCell.titleLabel.text = title.capitalized
 
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
             attributes.frame.size.width = collectionView.frame.width
-            let newAttributes = Static.sizingCell.preferredLayoutAttributesFitting(attributes)
+            let newAttributes = sizingCell.preferredLayoutAttributesFitting(attributes)
             return newAttributes.size
         } else {
             // Cells evenly fill the whole collection view width

@@ -60,7 +60,6 @@ extension UITableViewController: NSFetchedResultsControllerDelegate {
                            at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType,
                            newIndexPath: IndexPath?) {
-
         switch type {
         case .insert:
             guard let newIndexPath = newIndexPath

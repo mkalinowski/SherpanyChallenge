@@ -22,7 +22,7 @@ class ListPostsViewController: UITableViewController {
             $0.searchBar.barStyle = .black
             $0.searchBar.placeholder = "Search Posts"
             $0.searchBar.searchBarStyle = .minimal
-            $0.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+            $0.searchBar.tintColor = UIColor(named: "blue")
             $0.searchResultsUpdater = self
     }
 
@@ -72,7 +72,7 @@ class ListPostsViewController: UITableViewController {
     private func setupNavigationBar() {
         guard let navigationBar = navigationController?.navigationBar
             else { return }
-        navigationBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        navigationBar.backgroundColor = UIColor(named: "blue")
         navigationBar.isTranslucent = true
         navigationBar.shadowImage = UIImage()
         navigationBar.tintColor = .white
@@ -88,11 +88,13 @@ class ListPostsViewController: UITableViewController {
             }
             $0.layer.zPosition = -1 // Move effect below title
         })
+    }
 
-        searchController.searchBar.backgroundColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+    private func setupSearchBar() {
+        searchController.searchBar.backgroundColor = UIColor(named: "blue")
         searchController.searchBar.isTranslucent = true
         searchController.searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
-        searchController.searchBar.tintColor = #colorLiteral(red: 0.1453115046, green: 0.5773126483, blue: 0.9095440507, alpha: 1)
+        searchController.searchBar.tintColor = UIColor(named: "blue")
         searchController.searchBar.addSubview(
             UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)).with {
                 $0.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
@@ -117,6 +119,7 @@ class ListPostsViewController: UITableViewController {
 
         setupTableView()
         setupNavigationBar()
+        setupSearchBar()
         setupRefreshControl()
 
         do {

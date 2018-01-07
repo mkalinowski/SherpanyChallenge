@@ -33,11 +33,11 @@ excluded:
 - Playground.playground
 force_cast: warning
 function_body_length:
-  warning: 100
-  error: 250
+  warning: 30
+  error: 100
 type_body_length: 
-- 500 
-- 1000
+- 100
+- 500
 file_length:
 - 500
 - 1200
