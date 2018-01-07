@@ -13,8 +13,18 @@ class AlbumView: UICollectionReusableView {
         return DefaultZPositionLayer.self // Move the view below scroll indicator
     }
 
-    let titleLabel = UILabel()
-    let subtitleLabel = UILabel()
+    let titleLabel = UILabel().with {
+        $0.font = UIFont
+            .preferredFont(forTextStyle: .body)
+            .fontDescriptor
+            .withSymbolicTraits(.traitBold).map({
+                UIFont(descriptor: $0, size: 0.0) // keep original size
+            })
+    }
+
+    let subtitleLabel = UILabel().with {
+        $0.textColor = UIColor.gray
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,18 +37,9 @@ class AlbumView: UICollectionReusableView {
     }
 
     private func configure() {
-        titleLabel.font = UIFont
-            .preferredFont(forTextStyle: .body)
-            .fontDescriptor
-            .withSymbolicTraits(.traitBold).map({
-                UIFont(descriptor: $0, size: 0.0) // keep original size
-            })
-
-        subtitleLabel.textColor = UIColor.gray
-
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light)).with {
-            $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             $0.frame = bounds
+            $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         }
 
         addSubview(blurView)
@@ -46,10 +47,10 @@ class AlbumView: UICollectionReusableView {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel]).with {
             $0.axis = .vertical
             $0.distribution = .fillEqually
-            $0.isLayoutMarginsRelativeArrangement = true
-            $0.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+            $0.frame = blurView.bounds.with {
+                $0.origin.x = 20
+            }
             $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-            $0.frame = blurView.bounds
         }
 
         let imageView = UIImageView(image: #imageLiteral(resourceName: "chevron")).with {

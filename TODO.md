@@ -27,7 +27,7 @@
 - [x] Error handling
 - [x] Hardcode ATS domain
 - [x] Scroll post body with photos
-- [ ] Autolayout warnings
+- [x] Autolayout warnings
 - [x] Empty post screen
 - [ ] Refresh doesn't finish
 - [ ] Profile allocations
