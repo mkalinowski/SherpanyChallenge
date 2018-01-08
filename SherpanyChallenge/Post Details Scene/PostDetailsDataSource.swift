@@ -1,5 +1,5 @@
 //
-//  AlbumsDataSource.swift
+//  PostDetailsDataSource.swift
 //  SherpanyChallenge
 //
 //  Created by Mikolaj Kalinowski on 12/28/17.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol AlbumsDataSourceDelegate: class {
-    func albumsDataSource(_ albumsDataSource: AlbumsDataSource, didChange sections: IndexSet)
+protocol PostDetailsDataSourceDelegate: class {
+    func postDetailsDataSource(_ postDetailsDataSource: PostDetailsDataSource, didChange sections: IndexSet)
 }
 
-final class AlbumsDataSource: NSObject {
-    weak var delegate: AlbumsDataSourceDelegate?
+final class PostDetailsDataSource: NSObject {
+    weak var delegate: PostDetailsDataSourceDelegate?
     let albums: [Album]
     let title: String
     let body: String
@@ -36,7 +36,7 @@ final class AlbumsDataSource: NSObject {
 
         if expandedSection == section {
             expandedSection = nil
-            delegate?.albumsDataSource(self, didChange: IndexSet(integer: section))
+            delegate?.postDetailsDataSource(self, didChange: IndexSet(integer: section))
         } else {
             var sections = IndexSet(integer: section)
             _ = expandedSection.map {
@@ -44,12 +44,12 @@ final class AlbumsDataSource: NSObject {
             }
             expandedSection = section
 
-            delegate?.albumsDataSource(self, didChange: sections)
+            delegate?.postDetailsDataSource(self, didChange: sections)
         }
     }
 }
 
-extension AlbumsDataSource: UICollectionViewDataSource {
+extension PostDetailsDataSource: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return albums.count + 1
     }
@@ -105,7 +105,7 @@ extension AlbumsDataSource: UICollectionViewDataSource {
     }
 }
 
-extension AlbumsDataSource: UICollectionViewDelegateFlowLayout {
+extension PostDetailsDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {

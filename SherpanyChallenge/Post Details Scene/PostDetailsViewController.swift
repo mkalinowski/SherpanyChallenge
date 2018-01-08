@@ -12,14 +12,14 @@ final class PostDetailsViewController: UIViewController, ListPostsViewController
     private var post: Post? {
         didSet {
             collectionView.backgroundView?.isHidden = (post != nil)
-            albumsDataSource = post.map {
-                AlbumsDataSource(title: $0.title ?? "",
+            postDetailsDataSource = post.map {
+                PostDetailsDataSource(title: $0.title ?? "",
                                  body: $0.body ?? "",
                                  albums: ($0.user?.albums?.array as? [Album]) ?? [])
             }
-            albumsDataSource?.delegate = self
-            collectionView.dataSource = albumsDataSource
-            collectionView.delegate = albumsDataSource
+            postDetailsDataSource?.delegate = self
+            collectionView.dataSource = postDetailsDataSource
+            collectionView.delegate = postDetailsDataSource
             collectionView.reloadData()
             collectionView.setContentOffset(.zero, animated: false)
         }
@@ -51,7 +51,7 @@ final class PostDetailsViewController: UIViewController, ListPostsViewController
         $0.sectionHeadersPinToVisibleBounds = true
     }
 
-    private var albumsDataSource: AlbumsDataSource?
+    private var postDetailsDataSource: PostDetailsDataSource?
 
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
@@ -83,11 +83,11 @@ final class PostDetailsViewController: UIViewController, ListPostsViewController
     }
 }
 
-extension PostDetailsViewController: AlbumsDataSourceDelegate {
-    func albumsDataSource(_ albumsDataSource: AlbumsDataSource, didChange sections: IndexSet) {
+extension PostDetailsViewController: PostDetailsDataSourceDelegate {
+    func postDetailsDataSource(_ postDetailsDataSource: PostDetailsDataSource, didChange sections: IndexSet) {
         collectionView.reloadSections(sections)
 
-        guard let expandedSection = albumsDataSource.expandedSection,
+        guard let expandedSection = postDetailsDataSource.expandedSection,
             let attributes = collectionView.layoutAttributesForSupplementaryElement(
                 ofKind: UICollectionElementKindSectionHeader,
                 at: IndexPath(item: 0, section: expandedSection))

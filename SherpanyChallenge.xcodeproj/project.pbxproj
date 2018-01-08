@@ -26,7 +26,7 @@
 		D001E3CD1FEC84A300A7C06F /* Downloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3CC1FEC84A300A7C06F /* Downloadable.swift */; };
 		D001E3D61FEC887300A7C06F /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3D51FEC887300A7C06F /* Builder.swift */; };
 		D001E3DC1FEC8CF800A7C06F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D001E3DA1FEC8CF800A7C06F /* Model.xcdatamodeld */; };
-		D06747621FF495A2000B4154 /* AlbumsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06747611FF495A2000B4154 /* AlbumsDataSource.swift */; };
+		D06747621FF495A2000B4154 /* PostDetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06747611FF495A2000B4154 /* PostDetailsDataSource.swift */; };
 		D06747661FF4B9D2000B4154 /* BodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06747651FF4B9D2000B4154 /* BodyCell.swift */; };
 		D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004CE1FEC8FEB00D1DE95 /* PersistenceService.swift */; };
 		D07004D21FEDAC4000D1DE95 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */; };
@@ -65,7 +65,7 @@
 		D001E3D51FEC887300A7C06F /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		D001E3D71FEC8C5500A7C06F /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		D001E3DB1FEC8CF800A7C06F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		D06747611FF495A2000B4154 /* AlbumsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsDataSource.swift; sourceTree = "<group>"; };
+		D06747611FF495A2000B4154 /* PostDetailsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsDataSource.swift; sourceTree = "<group>"; };
 		D06747651FF4B9D2000B4154 /* BodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyCell.swift; sourceTree = "<group>"; };
 		D07004CE1FEC8FEB00D1DE95 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		D07004D11FEDAC4000D1DE95 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		0BF9104A200179EA008213C6 /* Post Details Scene */ = {
 			isa = PBXGroup;
 			children = (
-				D06747611FF495A2000B4154 /* AlbumsDataSource.swift */,
+				D06747611FF495A2000B4154 /* PostDetailsDataSource.swift */,
 				0B2819C21FF329000030CDCC /* AlbumView.swift */,
 				D06747651FF4B9D2000B4154 /* BodyCell.swift */,
 				0B2819C01FF319E40030CDCC /* PhotoCell.swift */,
@@ -289,7 +289,7 @@
 				0B2819C11FF319E40030CDCC /* PhotoCell.swift in Sources */,
 				D07004E81FEE176A00D1DE95 /* Album+CoreDataClass.swift in Sources */,
 				D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */,
-				D06747621FF495A2000B4154 /* AlbumsDataSource.swift in Sources */,
+				D06747621FF495A2000B4154 /* PostDetailsDataSource.swift in Sources */,
 				0B2819BF1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
 				D07004E41FEE176A00D1DE95 /* Post+CoreDataProperties.swift in Sources */,
