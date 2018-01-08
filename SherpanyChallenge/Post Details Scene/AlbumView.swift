@@ -49,6 +49,7 @@ final class AlbumView: UICollectionReusableView {
             $0.distribution = .fillEqually
             $0.frame = blurView.bounds.with {
                 $0.origin.x = 20
+                $0.size.width = $0.size.width - 60
             }
             $0.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         }

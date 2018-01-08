@@ -30,5 +30,5 @@
 - [x] Autolayout warnings
 - [x] Empty post screen
 - [x] Refresh doesn't finish
-- [ ] Profile allocations
+- [x] Profile allocations
 - [x] Resize body cell on rotation
