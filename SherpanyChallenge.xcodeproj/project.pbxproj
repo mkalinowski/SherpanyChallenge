@@ -18,6 +18,7 @@
 		0B85D4171FF94C7A003AF489 /* BlurredImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85D4161FF94C7A003AF489 /* BlurredImageView.swift */; };
 		0BF9104C20017B16008213C6 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9104B20017B16008213C6 /* Log.swift */; };
 		0BF9104E2002EF3A008213C6 /* NetworkActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9104D2002EF3A008213C6 /* NetworkActivityIndicator.swift */; };
+		0BF910512002FB83008213C6 /* PostDetailsCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF910502002FB83008213C6 /* PostDetailsCollectionViewLayout.swift */; };
 		D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D001E3B21FEC757500A7C06F /* AppDelegate.swift */; };
 		D001E3BA1FEC757500A7C06F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D001E3B91FEC757500A7C06F /* Assets.xcassets */; };
 		D001E3BD1FEC757500A7C06F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D001E3BB1FEC757500A7C06F /* LaunchScreen.storyboard */; };
@@ -53,6 +54,7 @@
 		0B85D4161FF94C7A003AF489 /* BlurredImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurredImageView.swift; sourceTree = "<group>"; };
 		0BF9104B20017B16008213C6 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		0BF9104D2002EF3A008213C6 /* NetworkActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicator.swift; sourceTree = "<group>"; };
+		0BF910502002FB83008213C6 /* PostDetailsCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailsCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D001E3AF1FEC757500A7C06F /* SherpanyChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SherpanyChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D001E3B21FEC757500A7C06F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D001E3B91FEC757500A7C06F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		0BF9104A200179EA008213C6 /* Post Details Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0BF910502002FB83008213C6 /* PostDetailsCollectionViewLayout.swift */,
 				D06747611FF495A2000B4154 /* PostDetailsDataSource.swift */,
 				0B2819C21FF329000030CDCC /* AlbumView.swift */,
 				D06747651FF4B9D2000B4154 /* BodyCell.swift */,
@@ -291,6 +294,7 @@
 				D07004CF1FEC8FEB00D1DE95 /* PersistenceService.swift in Sources */,
 				D06747621FF495A2000B4154 /* PostDetailsDataSource.swift in Sources */,
 				0B2819BF1FF2FF2B0030CDCC /* UITableViewController+NSFetchedResultsController.swift in Sources */,
+				0BF910512002FB83008213C6 /* PostDetailsCollectionViewLayout.swift in Sources */,
 				D001E3B31FEC757500A7C06F /* AppDelegate.swift in Sources */,
 				D07004E41FEE176A00D1DE95 /* Post+CoreDataProperties.swift in Sources */,
 				D06747661FF4B9D2000B4154 /* BodyCell.swift in Sources */,

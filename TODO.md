@@ -31,4 +31,4 @@
 - [x] Empty post screen
 - [x] Refresh doesn't finish
 - [ ] Profile allocations
-- [ ] Resize body cell on rotation
+- [x] Resize body cell on rotation

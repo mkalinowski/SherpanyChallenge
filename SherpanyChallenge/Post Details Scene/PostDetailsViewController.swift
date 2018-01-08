@@ -43,7 +43,7 @@ final class PostDetailsViewController: UIViewController, ListPostsViewController
                                         forSupplementaryViewOfKind: UICollectionElementKindSectionHeader)
     }
 
-    private let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout().with {
+    private let flowLayout: UICollectionViewFlowLayout = PostDetailsCollectionViewLayout().with {
         $0.estimatedItemSize = CGSize(width: 100, height: 100)
         $0.scrollDirection = .vertical
         $0.minimumInteritemSpacing = 0

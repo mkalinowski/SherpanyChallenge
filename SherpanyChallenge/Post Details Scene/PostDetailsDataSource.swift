@@ -72,8 +72,6 @@ extension PostDetailsDataSource: UICollectionViewDataSource {
 
         if indexPath.section == 0 {
             let cell: BodyCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.titleLabel.preferredMaxLayoutWidth = collectionView.frame.width
-            cell.bodyLabel.preferredMaxLayoutWidth = collectionView.frame.width
             cell.bodyLabel.text = body.capitalized
             cell.titleLabel.text = title.capitalized
             return cell
