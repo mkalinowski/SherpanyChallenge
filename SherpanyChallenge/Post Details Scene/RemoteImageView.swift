@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RemoteImageView: UIImageView {
+final class RemoteImageView: UIImageView {
     static let imageCache = NSCache<NSString, UIImage>()
     private var downloadTask: URLSessionDataTask?
 

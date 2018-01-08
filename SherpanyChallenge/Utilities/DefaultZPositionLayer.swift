@@ -10,7 +10,7 @@ import UIKit
 
 /// Layer which has always default zPosition (0)
 /// - seealso: https://stackoverflow.com/a/46737582
-class DefaultZPositionLayer: CALayer {
+final class DefaultZPositionLayer: CALayer {
     override var zPosition: CGFloat {
         get { return 0 }
         set {}

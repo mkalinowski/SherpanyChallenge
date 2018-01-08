@@ -12,7 +12,7 @@ protocol AlbumsDataSourceDelegate: class {
     func albumsDataSource(_ albumsDataSource: AlbumsDataSource, didChange sections: IndexSet)
 }
 
-class AlbumsDataSource: NSObject {
+final class AlbumsDataSource: NSObject {
     weak var delegate: AlbumsDataSourceDelegate?
     let albums: [Album]
     let title: String

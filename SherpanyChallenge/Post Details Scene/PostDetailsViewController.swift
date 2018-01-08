@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
+final class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
     private var post: Post? {
         didSet {
             collectionView.backgroundView?.isHidden = (post != nil)

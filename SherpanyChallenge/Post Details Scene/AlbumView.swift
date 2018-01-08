@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlbumView: UICollectionReusableView {
+final class AlbumView: UICollectionReusableView {
     override class var layerClass: AnyClass {
         return DefaultZPositionLayer.self // Move the view below scroll indicator
     }

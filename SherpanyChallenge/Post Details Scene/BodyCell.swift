@@ -17,7 +17,7 @@ open class AutoLayoutCollectionViewCell: UICollectionViewCell {
     }
 }
 
-class BodyCell: AutoLayoutCollectionViewCell {
+final class BodyCell: AutoLayoutCollectionViewCell {
     override func preferredLayoutAttributesFitting(
         _ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
 

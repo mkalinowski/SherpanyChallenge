@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoCell: UICollectionViewCell {
+final class PhotoCell: UICollectionViewCell {
     lazy var imageView: RemoteImageView = RemoteImageView()
 
     override init(frame: CGRect) {
