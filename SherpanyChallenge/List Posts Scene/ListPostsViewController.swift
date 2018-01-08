@@ -108,8 +108,11 @@ class ListPostsViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .white
 
-        if let refreshControl = refreshControl {
-            refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        if let refreshControl = refreshControl,
+            let persistenceService = persistenceService {
+            refreshControl.addTarget(persistenceService,
+                                     action: #selector(PersistenceService.sync),
+                                     for: .valueChanged)
         }
     }
 
@@ -131,12 +134,7 @@ class ListPostsViewController: UITableViewController {
     }
 
     @objc private func refresh(_ sender: UIRefreshControl) {
-        do {
-            try fetchedResultsController?.performFetch()
-            tableView.refreshControl?.beginRefreshing()
-        } catch {
-            log(error.localizedDescription, type: .error)
-        }
+        persistenceService?.sync()
     }
 }
 

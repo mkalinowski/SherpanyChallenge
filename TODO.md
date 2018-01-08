@@ -15,7 +15,7 @@
 - [x] Selecting a post (master) displays the detail to this post. The detail view consists of the post title, post body and related albums.
 - [x] The creator of this post has some favorite albums that we want to display along the post. An album consists of the album title and a collection of photos that belong to the album.
 - [x] The photos should be lazy-ly loaded when needed and cached. If the photo is in the cache it should take that, otherwise load from web and update the photo cell.
-- [ ] In general, provide UI feedback where you see fit.
+- [x] In general, provide UI feedback where you see fit.
 
 ###Bonus points
 
@@ -29,5 +29,5 @@
 - [x] Scroll post body with photos
 - [x] Autolayout warnings
 - [x] Empty post screen
-- [ ] Refresh doesn't finish
+- [x] Refresh doesn't finish
 - [ ] Profile allocations

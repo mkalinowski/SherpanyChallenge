@@ -40,38 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        application.isNetworkActivityIndicatorVisible = true
-        var results: [String: Data] = [:]
-        let types: [Downloadable.Type] = [User.self, Post.self, Album.self, Photo.self]
-
-        let sync = DispatchGroup()
-        for type in types {
-            sync.enter()
-            type.download { data in
-                do {
-                    let data = try data()
-                    results[String(describing: type)] = data
-                } catch {
-                    log(error.localizedDescription, type: .error)
-                }
-                sync.leave()
-            }
-        }
-
-        sync.notify(queue: .main) {
-            application.isNetworkActivityIndicatorVisible = false
-            guard let users = results[String(describing: User.self)],
-                let posts = results[String(describing: Post.self)],
-                let albums = results[String(describing: Album.self)],
-                let photos = results[String(describing: Photo.self)]
-                else {
-                    log("Some data not downloaded", type: .error)
-                    return
-            }
-            self.persistenceService.upsert(users: users,
-                                           posts: posts,
-                                           albums: albums,
-                                           photos: photos)
-        }
+        persistenceService.sync()
     }
 }
