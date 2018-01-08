@@ -8,7 +8,6 @@
 //
 
 import CoreData
-import Foundation
 
 @objc(Post)
 public class Post: NSManagedObject, Decodable, Downloadable {

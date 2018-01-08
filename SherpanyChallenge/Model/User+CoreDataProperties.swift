@@ -8,7 +8,6 @@
 //
 
 import CoreData
-import Foundation
 
 extension User {
 

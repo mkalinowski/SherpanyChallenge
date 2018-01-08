@@ -8,7 +8,6 @@
 //
 
 import CoreData
-import Foundation
 
 @objc(User)
 public class User: NSManagedObject, Decodable, Downloadable {

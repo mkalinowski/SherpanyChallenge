@@ -8,7 +8,6 @@
 //
 
 import CoreData
-import Foundation
 
 @objc(Photo)
 public class Photo: NSManagedObject, Decodable, Downloadable {

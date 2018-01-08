@@ -8,7 +8,6 @@
 //
 
 import CoreData
-import Foundation
 
 @objc(Album)
 public class Album: NSManagedObject, Decodable, Downloadable {
