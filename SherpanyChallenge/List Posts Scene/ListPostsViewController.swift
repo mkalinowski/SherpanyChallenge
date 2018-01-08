@@ -132,10 +132,6 @@ class ListPostsViewController: UITableViewController {
             log(error.localizedDescription, type: .error)
         }
     }
-
-    @objc private func refresh(_ sender: UIRefreshControl) {
-        persistenceService?.sync()
-    }
 }
 
 extension ListPostsViewController {

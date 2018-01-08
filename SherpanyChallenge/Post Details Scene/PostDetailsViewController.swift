@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PostDetailsViewController: UIViewController, ListPostsViewControllerDelegate {
+final class PostDetailsViewController: UIViewController {
     private var post: Post? {
         didSet {
             collectionView.backgroundView?.isHidden = (post != nil)
@@ -77,10 +77,6 @@ final class PostDetailsViewController: UIViewController, ListPostsViewController
             collectionView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
-
-    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post?) {
-        self.post = post
-    }
 }
 
 extension PostDetailsViewController: PostDetailsDataSourceDelegate {
@@ -95,5 +91,11 @@ extension PostDetailsViewController: PostDetailsDataSourceDelegate {
 
         let section = CGPoint(x: 0, y: attributes.frame.origin.y - collectionView.contentInset.top)
         collectionView.setContentOffset(section, animated: true)
+    }
+}
+
+extension PostDetailsViewController: ListPostsViewControllerDelegate {
+    func listPostsViewController(_ controller: ListPostsViewController, didSelect post: Post?) {
+        self.post = post
     }
 }
