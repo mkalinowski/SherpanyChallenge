@@ -50,8 +50,10 @@ final class RemoteImageView: UIImageView {
             return
         }
 
+        NetworkActivityIndicator.show()
         activityIndicator.startAnimating()
         downloadTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            NetworkActivityIndicator.hide()
             guard let data = data,
                 let image = UIImage(data: data)
                 else { return }
