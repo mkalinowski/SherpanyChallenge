@@ -39,7 +39,11 @@ extension Downloadable {
             $0.httpMethod = "GET"
         }
 
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+        let session = URLSession(configuration: URLSessionConfiguration.default.with {
+            $0.timeoutIntervalForResource = 300
+            $0.waitsForConnectivity = true
+        })
+        let task = session.dataTask(with: request) { data, _, error in
             if let error = error {
                 completion { throw error }
                 return

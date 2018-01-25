@@ -13,6 +13,10 @@ final class RemoteImageView: UIImageView {
     private var downloadTask: URLSessionDataTask?
 
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    static let session = URLSession(configuration: URLSessionConfiguration.default.with {
+        $0.timeoutIntervalForResource = 60
+        $0.waitsForConnectivity = true
+    })
 
     override var image: UIImage? {
         didSet {
@@ -52,7 +56,7 @@ final class RemoteImageView: UIImageView {
 
         NetworkActivityIndicator.show()
         activityIndicator.startAnimating()
-        downloadTask = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+        downloadTask = RemoteImageView.session.dataTask(with: url) { [weak self] data, response, error in
             NetworkActivityIndicator.hide()
             guard let data = data,
                 let image = UIImage(data: data)
